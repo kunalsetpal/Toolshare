@@ -1,0 +1,75 @@
+{% extends "app/layout.html" %}
+{% block content %}
+    <div class="col-md-5 tool-image">
+        <h2 style="text-transform:none; text-align:left;width:100% font-size:1.3em; padding:10px;" >{{ tool.tool_name}}</h2>
+        <img class=" img-responsive" src="{{ tool.image.url }}" alt="tool" style="min-height:200px;">
+        <h4 class="tool-page-line"> Category: {{ tool.category }} </h4>
+        <h4 class="tool-page-line"> Owner: {{ tool_owner.username }} </h4>
+        <h4 class="tool-page-line"> Condition: {{ tool.condition }} </h4>
+        <h4 class="tool-page-line"> Location: {{ tool.location }} </h4>
+    </div>
+    <div class="col-md-7 tool-page" >
+        <form action=" " method="post" class="form-horizontal">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="first_name" class="col-md-4 control-label">Leave a message: <br />(optional)</label>
+                    <div class="col-md-8 col-sm-12">
+                        {{ form.message }}
+                        {{ form.message.errors }}
+                    </div>
+                </div>
+                <br />
+                <div class="form-group">
+                    <label for="to" class="col-md-4 control-label">Until:</label>
+                    <div class="col-md-8">
+                        {{ form.date }}
+                        {{ form.date.errors }}
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-4 col-md-4">
+                        <input type="hidden" name="next" value="/" />
+                        <input type="submit" value="Send Request" class="btn btn-info" />
+                    </div>
+                </div>
+         </form>
+    </div>
+    {% if messages %}
+	<ul class="messages">
+	    {% for msg in messages %}
+	    <li>
+	        <div class="alert alert-{{msg.level_tag}}" role="alert">
+	    {{msg.message}}
+	    </div>
+	    </li>
+	    {% endfor %}
+	</ul>
+	{% endif %}
+{% endblock %}
+{% block scripts %}
+    <script>
+    $(function() {
+        $( "#to" ).datepicker({
+      defaultDate: "+1w",
+      changeMonth: true,
+      numberOfMonths: 1,
+      maxDate:14,
+      minDate:0,
+      dateFormat:"yy-mm-dd",
+      onClose: function( selectedDate ) {
+        $( "#from" ).datepicker( "option", "maxDate", selectedDate );
+      }
+    });
+  });
+  </script>
+
+  <script>
+  var request_sent ="{{ test }}"
+  if(request_sent==="True")
+  {   /* alert("Request has been succesfully sent. Please continue to the main page.") */
+    window.location.assign("/")
+  }
+  </script>
+{% endblock %}
+

@@ -1,0 +1,42 @@
+{% extends "app/layout.html" %}
+{% block content %}
+<div class="container"  id="registerdtools_form">
+    <div class="row" style="padding:10px">
+        <h2>{{ title }}</h2>
+        <section id="registeredToolForm">
+            <form action="/registerTool/" method="post" class="form-horizontal">
+                {% csrf_token %}
+                <h2>Sharezone Users</h2>
+                <br/>
+                <table class="table table-striped">
+                        <tr>
+                            <th>First name</th>
+                            <th>Last name</th>
+                            <th>Gender</th>
+                            <th>E-mail</th>
+                            <th>Username</th>
+                            <th>Role</th>
+                            <th>Appoint to Admin</th>
+                        </tr>
+                        {% for i in users %}
+                        <tr>
+                            <td>{{ i.user_id.first_name }}</td>
+                            <td>{{ i.user_id.last_name }}</td>
+                            <td>{{ i.gender }}</td>
+                            <td>{{ i.user_id.email }}</td>
+                            <td>{{ i.user_id.username }}</td>
+                            {% if i.is_coordinator%}
+                                <td>Coordinator</td>
+                            {% else %}
+                                <td>User</td>
+                            {% endif %}
+                            <td>{% if not i.is_coordinator %}<a href="{% url 'assignNewCoordinator' i.user_id.id %}" class="btn btn-primary btn-sm btn-block" style="width: 50%"> Make Admin</a>{% endif %}</td>
+                        </tr>
+                        {% endfor %}
+                </table>
+            </form>
+        </section>
+    </div>
+</div>
+
+{% endblock %}

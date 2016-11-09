@@ -1,0 +1,137 @@
+{% extends "app/layout.html" %}
+{% block content %}
+
+{% if user.is_authenticated %}
+    <div class="row">
+    </div>
+    <div class="row">
+        <div class="col-md-12 " style="margin-top:5px;">
+            <div class="col-md-10 col-md-offset-1">
+                {% if shed_info.name %}
+                    <h6 class="shed-info"><small>Sharezone name: {{ shed_info.name }} |  Address:{{ shed_info.address }} | zipcode:{{ shed_info.zipcode }}</small></h6>
+                {% else%}
+                    {% if user_profile.is_coordinator  %}
+                        <a href="#" class="shed-info-link">Please add share zone information</a>
+                    {% else%}
+                        <h6 class="shed-info">Currently, there's no SHED address or sharezone name</h6>
+                        {% endif %}
+                {% endif%}
+                <div id="custom-search-input">
+                    <form action="" method="get" class="form-horizontal">
+                        <div class="input-group ">
+                                {% if tool_name %}
+                                    {{ search_form.tool_name }}
+                                    {{ search_form.tool_name.errors }}
+                              <!--  <input type="text" class="form-control input-lg" id="tool_name" name="tool_name" placeholder="Tool name" value="{{ tool_name }}"/> -->
+                                {% else %}
+                                 <input type="text" class="form-control input-lg" id="tool_name" name="tool_name" placeholder="Tool name"/>
+                                    {% endif %}
+                                <span class="input-group-btn">
+                                    <button class="btn btn-info btn-lg" type="submit">
+                                        <i class="glyphicon glyphicon-search"></i>
+                                    </button>
+                                </span>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+        <div role="main" id="main" class="col-md-10 col-md-offset-1">
+        {% if tool %}
+            {% for t in tool  %}
+                    <div class="col-sm-6 col-md-4 col-xs-12 tool-grid">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <h4 style="text-transform:none;font-weight: bold; text-align:center;width:100%" >{{ t.tool_name}}</h4>
+                                <img class=" img-responsive" src="{{ t.image.url }}" alt="tool" style="">
+                                <p style="font-weight: bold"> Category: {{ t.category }} </p>
+                                <p style="font-weight: bold"> Owner: {{ t.tool_owner_id }} </p>
+                                <p style="font-weight: bold"> Condition: {{ t.condition }}</p>
+                                <p style="font-weight: bold"> Location: {{ t.location }}</p>
+                                <p style="text-align:center;"><a href="{% url 'onBorrowToolRequest' t.id %}" class="btn btn-info">Borrow Tool</a></p>
+                            </div>
+                        </div>
+                    </div>
+            {% endfor %}
+        {% else %}
+            {% if tool_name %}
+                   <h2 style="text-align:center;padding-left:1%;">{{ message }}</h2>
+            {% else %}
+            <h1 style="text-align:center; padding-left:1%;"> Currently,there are no tools in this share zone.</h1>
+            {% endif %}
+        {% endif %}
+        </div>
+    </div>
+    </div>
+    <br />
+    <br />
+
+
+<div class="container" style="text-align:center;">
+    <ul class="pagination pagination-sm">
+    {% if paginator.has_previous %}
+      <span class="page">
+    <a href="?page={{ paginator.previous_page_number }}{% if tool_name %}&tool_name={{ tool_name}}{% endif %}" class="btn btn-default previous"> Prev</a>
+      </span>
+   {% endif %}
+
+   {% if paginator.show_first %}
+      <span class="page"><a href="?page=1{% if tool_name %}&tool_name={{ tool_name}}{% endif %}">1</a></span>
+      <span class="ellipsis">...</span>
+   {% endif %}
+
+    {% for page in paginator.page_range %}
+            {% if page %}
+                {% ifequal page paginator.number%}
+                    <span class="current active">{{ page }}</span>
+                {% else %}
+                    <span class="page"><a href="?page={{page }}{% if tool_name %}&tool_name={{ tool_name}}{% endif %}">{{ page }}</a></span>{% endifequal %}
+            {% else %}
+            ...
+             {% endif %}
+    {% endfor %}
+
+    {% if paginator.show_last %}
+      <span class="ellipsis">...</span>
+      <span class="page"><a href="?page=last{% if tool_name %}&tool_name={{ tool_name}}{% endif %}">{{ paginator.pages }}</a></span>
+   {% endif %}
+   {% if paginator.has_next %}
+      <span class="page "><a href="?page={{ paginator.next_page_number}}{% if tool_name %}&tool_name={{ tool_name}}{% endif %}" class="btn btn-default next">Next</a></span>
+   {% endif %}
+    </ul>
+</div>
+
+    <!--
+    <br />
+    <div id="fb_div" class="col-md-8 form-horizontal col-sm-offset-2">
+        <div id="socialmedia">
+            <h3>Post to your Facebook wall:</h3> <br />
+            <textarea id="fb_message" name="fb_message" cols="70" rows="7"></textarea> <br />
+            <input type="button" value="Post on Wall" class="btn-success btn "onClick="post_on_wall();" style="margin-top:2%;margin-bottom:1%" />
+        </div>
+    </div>
+    <div style=" float:left;clear:both;"> </div>
+    -->
+{% else %}
+<div class="jumbotron" id="welcome-banner" style="margin-top:4%;margin-bottom:4%;">
+    <h1>Tool Share Platform</h1>
+    <p class="lead">The Tool Share product is intended to improve communities by providing an easy mechanism for sharing items between neighbors. 
+    <br />This product primarily consist of tool exchanges but its implementation allows it to easily extended to include items of different kinds. </p>
+</div>
+
+
+<div class="row">
+    <div class="col-md-6">
+        <h2>Getting started</h2>
+        <p>
+            The focus of the product is to facilitate borrowing and lending of frequently used 
+tools among registered members of the same community. The product is designed to be 
+user-friendly and extensible for adding other kinds of tools.
+        </p>
+        <p><a class="btn btn-success" href="{% url 'register' %}">Register</a></p>
+    </div>
+
+</div>
+{% endif %}
+{% endblock %}

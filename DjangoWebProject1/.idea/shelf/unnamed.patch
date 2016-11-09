@@ -1,0 +1,2388 @@
+Index: .idea/dataSources.local.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/dataSources.local.xml	(revision 123)
++++ .idea/dataSources.local.xml	(revision )
+@@ -1,6 +1,6 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
+   <component name="dataSourceStorageLocal">
+-    <data-source name="SQLite -" uuid="480a9058-3ad0-4e95-afee-a99fd79bb02f" />
++    <data-source name="Django default" uuid="892a6cbe-0a3a-430d-a0b6-dd9dd94bcca7" />
+   </component>
+ </project>
+\ No newline at end of file
+Index: app/templates/app/mainsite.html
+===================================================================
+--- app/templates/app/mainsite.html	(revision 123)
++++ app/templates/app/mainsite.html	(revision 123)
+@@ -1,13 +0,0 @@
+-{% extends "app/layout.html" %}
+-
+-{% block content %}
+-
+-<div class="jumbotron" id="welcome-banner" style="margin-top:4%;margin-bottom:4%;">
+-    <h1>Tool Share Platform</h1>
+-    <p class="lead">The Tool Share product is intended to improve communities by providing an easy mechanism for sharing items between neighbors.
+-    <br />This product primarily consist of tool exchanges but its implementation allows it to easily extended to include items of different kinds. </p>
+-</div>
+-
+-<h1>You are Logged in!</h1>
+-
+-{% endblock %}
+\ No newline at end of file
+Index: app/templates/app/registershed.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>windows-1252
+===================================================================
+--- app/templates/app/registershed.html	(revision 123)
++++ app/templates/app/registershed.html	(revision )
+@@ -14,12 +14,14 @@
+                     <label for="shed_name" class="col-md-2 control-label">Shed name</label>
+                     <div class="col-md-10">
+                         {{ form.name }}
++                        {{ form.name.errors }}
+                     </div>
+                 </div>
+                 <div class="form-group">
+                     <label for="shed_address" class="col-md-2 control-label">Shed address</label>
+                     <div class="col-md-10">
+                         {{ form.address }}
++                        {{ form.address.errors }}
+                     </div>
+                 </div>
+                 <div class="form-group">
+\ No newline at end of file
+Index: app/static/app/content/site.css
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/static/app/content/site.css	(revision 123)
++++ app/static/app/content/site.css	(revision )
+@@ -55,4 +55,9 @@
+ footer
+ {
+     text-align: center;
+-}
+\ No newline at end of file
++}
++
++.radio-button li
++{
++    list-style:none;
++}
+\ No newline at end of file
+Index: app/templates/app/registertool.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>windows-1252
+===================================================================
+--- app/templates/app/registertool.html	(revision 124)
++++ app/templates/app/registertool.html	(revision )
+@@ -19,14 +19,14 @@
+ 
+                 <div class="form-group">
+                     <label for="status" class="col-md-2 control-label">Tool Status</label>
+-                    <div class="col-md-10">
++                    <div class="col-md-10 radio-button">
+                         {{ form.status }}
+                     </div>
+                 </div>
+ 
+                 <div class="form-group">
+                     <label for="category" class="col-md-2 control-label">Category</label>
+-                    <div class="col-md-10">
++                    <div class="col-md-10 radio-button">
+                         {{ form.category }}
+                     </div>
+                 </div>
+@@ -37,13 +37,6 @@
+                         {{ form.special_instruction }}
+                     </div>
+                 </div>
+-
+-           <!--       <div class="form-group">
+-                    <label for="picture" class="col-md-2 control-label">Picture</label>
+-                    <div class="col-md-10">
+-                        {{ form.picture }}
+-                    </div>
+-                </div>  -->   
+ 
+                   <div class="form-group">
+                     <label for="unique_field" class="col-md-2 control-label">Unique Field</label>
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/misc.xml	(revision 123)
++++ .idea/misc.xml	(revision )
+@@ -1,17 +1,18 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
+-  <component name="ProjectLevelVcsManager" settingsEditedManually="false">
+-    <OptionsSetting value="true" id="Add" />
+-    <OptionsSetting value="true" id="Remove" />
+-    <OptionsSetting value="true" id="Checkout" />
+-    <OptionsSetting value="true" id="Update" />
+-    <OptionsSetting value="true" id="Status" />
+-    <OptionsSetting value="true" id="Edit" />
+-    <ConfirmationsSetting value="0" id="Add" />
+-    <ConfirmationsSetting value="0" id="Remove" />
+-  </component>
+   <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.4.3 (C:\Python34\python.exe)" project-jdk-type="Python SDK" />
+   <component name="SvnBranchConfigurationManager">
++    <option name="myConfigurationMap">
++      <map>
++        <entry key="$PROJECT_DIR$">
++          <value>
++            <SvnBranchConfiguration>
++              <option name="trunkUrl" value="" />
++            </SvnBranchConfiguration>
++          </value>
++        </entry>
++      </map>
++    </option>
+     <option name="mySupportsUserInfoFilter" value="true" />
+   </component>
+ </project>
+\ No newline at end of file
+Index: app/templates/app/index.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>windows-1252
+===================================================================
+--- app/templates/app/index.html	(revision 123)
++++ app/templates/app/index.html	(revision )
+@@ -2,21 +2,124 @@
+ 
+ {% block content %}
+ 
+-<div class="jumbotron" id="welcome-banner" style="margin-top:4%;margin-bottom:4%;">
+-    <h1>Tool Share Platform</h1>
+-    <p class="lead">The Tool Share product is intended to improve communities by providing an easy mechanism for sharing items between neighbors. 
+-    <br />This product primarily consist of tool exchanges but its implementation allows it to easily extended to include items of different kinds. </p>
++{% if user.is_authenticated %}
++<div class="row"  id="registerdtools_form">
++    <div class="col-md-8" >
++        <h2> <!-- {{ title }} --> </h2>
++        <section id="registeredToolForm">
++            <form action="/registerTool/" method="post" class="form-horizontal">
++                {% csrf_token %}
++                <br/>
++                <style>
++                    table, th, td {
++                    border: 1px solid black;
++                    border-collapse: collapse;
++                    }
++                    th, td {
++                    padding: 10px;
++                    }
++                    th {
++                    text-align: left;
++                    }
++                </style>
++                </head>
++                <h2>Registered Tools</h2>
++                <br/>
++                <body>
++
++                <table style="width:100%">
++                    <table>
++                        <tr>
++                            <th>Owner ID</th>
++                            <th>Tool ID</th>
++                            <th>Picture</th>
++                            <th>Tool Name</th>
++                            <th>Status</th>
++                            <th>Category</th>
++                            <th>Special Instruction</th>
++                            <th>Unique Field</th>
++                            <th>Settings</th>
++<!--                             <th>Requested by</th>
++                            <th>Confirm</th> -->
++                        </tr>
++                        {% for b in tool %}
++                        <tr>
++                            <td>{{ ownerID }}</td>
++                            <td>{{ b.id }}</td>
++                            <td>{{ b.picture }}</td>
++                            <td>{{ b.tool_name }}</td>
++                            <td>{{ b.status }}</td>
++                            <td>{{ b.category }}</td>
++                            <td>{{ b.special_instruction }}</td>
++                            <td>{{ b.unique_field }}</td>
++                            {% url 'updateTool' b.id as to_url %}
++                            <td> <a href={{to_url}}> Update </a> </td>
++
++<!--                         {% for c in borrowRequests %}
++                        {% if c.tool.id == b.id %}
++                            <td>{{ c.borrower_id.user_id }}</td>
++                            {% url 'onAcceptToolRequest' c.tool.id as to_url %}
++                            <td> <a href={{to_url}}>Accept</a> </td>
++                        {% endif %}
++                        {% endfor %} -->
++                        </tr>
++                        {% endfor %}
++                    </table>
++                </table>
++
++               <!--  NEW TABLE -->
++
++               <table>
++                        <tr>
++                            <h2>Borrow Requests</h2>
++                            <br \>
++                            <th>Tool ID</th>
++                            <th>Requested by</th>
++                            <th>Owner ID</th>
++                            <th>Confirm</th>
++                        </tr>
++                        {% for c in borrowRequests %}
++                        <tr>
++                            <td>{{ c.tool.id }}</td>
++                            <td>{{ c.borrower_id.user_id }}</td>
++                            <td>{{ c.owner_id.user_id }}</td>
++                            {% url 'onAcceptToolRequest' c.tool.id as to_url %}
++                            <td> <a href={{to_url}}>Accept</a> </td>
++                        </tr>
++                        {% endfor %}
++                    </table>
++                </table>
++               <!-- END OF NEW TABLE -->
++
++                </body>
++            </form>
++        </section>
+-</div>
++    </div>
++</div>
+ 
+-{% if user.is_authenticated %}
++
++
++
++<br />
++
+ <h3 align="center">Hey {{user.first_name}}!  You are logged in.</h3>
+-    </div>
+     <div id="fb_div" class="col-md-8 form-horizontal col-sm-offset-2">
++        <div id="socialmedia">
+-    <h3>Post to your Facebook wall:</h3> <br />
+-    <textarea id="fb_message" name="fb_message" cols="70" rows="7"></textarea> <br />
+-    <input type="button" value="Post on Wall" class="btn-success btn "onClick="post_on_wall();" style="margin-top:2%;margin-bottom:1%" />
+-</div>
++            <h3>Post to your Facebook wall:</h3> <br />
++            <textarea id="fb_message" name="fb_message" cols="70" rows="7"></textarea> <br />
++            <input type="button" value="Post on Wall" class="btn-success btn "onClick="post_on_wall();" style="margin-top:2%;margin-bottom:1%" />
++        </div>
++    </div>
++    <div style=" float:left;clear:both;"> </div>
++
+ {% else %}
++<div class="jumbotron" id="welcome-banner" style="margin-top:4%;margin-bottom:4%;">
++    <h1>Tool Share Platform</h1>
++    <p class="lead">The Tool Share product is intended to improve communities by providing an easy mechanism for sharing items between neighbors. 
++    <br />This product primarily consist of tool exchanges but its implementation allows it to easily extended to include items of different kinds. </p>
++</div>
++
++
+ <div class="row">
+     <div class="col-md-6">
+         <h2>Getting started</h2>
+Index: .idea/dataSources.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/dataSources.xml	(revision 123)
++++ .idea/dataSources.xml	(revision )
+@@ -1,12 +1,19 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
+-  <component name="DataSourceManagerImpl" format="xml" hash="2198717922">
+-    <data-source source="LOCAL" name="SQLite -" uuid="480a9058-3ad0-4e95-afee-a99fd79bb02f">
++  <component name="DataSourceManagerImpl" format="xml" hash="3121242933">
++    <data-source source="LOCAL" name="Django default" uuid="892a6cbe-0a3a-430d-a0b6-dd9dd94bcca7">
+       <driver-ref>sqlite.xerial</driver-ref>
+       <synchronize>true</synchronize>
+       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+-      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/db.sqlite3</jdbc-url>
+-      <libraries />
++      <jdbc-url>jdbc:sqlite:C:\Users\Lumbardh\Desktop\Found. of Software Eng\Project\la2225@control\trunk\Code\DjangoWebProject1\db.sqlite3</jdbc-url>
++      <libraries>
++        <library>
++          <url>file://$APPLICATION_CONFIG_DIR$/jdbc-drivers/xerial-sqlite-license.txt</url>
++        </library>
++        <library>
++          <url>file://$APPLICATION_CONFIG_DIR$/jdbc-drivers/sqlite-jdbc-3.8.9.jar</url>
++        </library>
++      </libraries>
+     </data-source>
+   </component>
+ </project>
+\ No newline at end of file
+Index: app/models.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>windows-1252
+===================================================================
+--- app/models.py	(revision 124)
++++ app/models.py	(revision )
+@@ -22,12 +22,12 @@
+         (SHED, 'Shed'),
+     )
+ 
+-    user_id = models.OneToOneField(User, primary_key=True)
++    user_id = models.OneToOneField(User, primary_key=True,on_delete=models.CASCADE)
+     address = models.CharField(max_length=30)
+     zipcode = models.CharField(max_length=5)
+     gender = models.CharField(max_length=20, choices=GENDER_CHOICES)
+     pickup_arrangement = models.CharField(max_length=20, choices=PICKUP_ARRANGEMENT_CHOICES)
+-    is_coordinator = models.BooleanField( default=0)
++    is_coordinator = models.BooleanField(default=0)
+ 
+ 
+ class Tool(models.Model):
+@@ -59,14 +59,26 @@
+ 
+     tool_name = models.CharField(max_length=20)
+     status = models.CharField(max_length=20, choices=ACTIVATION_STATUS_CHOICES)
+-    tool_owner_id = models.ForeignKey(User)
++    tool_owner_id = models.ForeignKey(User) #on_delete=models.SET_NULL
+     # registration_date = models.DateField()
+     category = models.CharField(max_length=20, choices=CATEGORY_CHOICES)
+     special_instruction = models.TextField(blank=True, null=True)
++<<<<<<< .mine
++||||||| .r123
++    # picture = models.ImageField((upload_to=generate_filename, blank=True, null=True))
++=======
+     image = models.ImageField(upload_to='pics/', blank=True, null=True)
++>>>>>>> .r124
+     unique_field = models.CharField(max_length=120, blank=True, null=True)
+     borrower_id= models.CharField(max_length=20)
++<<<<<<< .mine
++    model_pic = models.ImageField(upload_to='pics/', blank=True, null=True)
++||||||| .r123
++    print("hey")
++    model_pic = models.ImageField(upload_to='pics/', blank=True, null=True)
++=======
+     is_borrowed = models.BooleanField(default=False)
++>>>>>>> .r124
+ 
+ 
+ class Shed(models.Model):
+@@ -80,7 +92,7 @@
+     tool = models.ForeignKey(Tool)
+     # Aditya Landekar: We need to specify the related_name to resolve the reverse accesssor issue
+     # The model is not able to distinguish between the two User profiles if we dont provide it with unique related names
+-    borrower_id= models.ForeignKey(UserProfile, related_name='borrower_id')
++    borrower_id = models.ForeignKey(UserProfile, related_name='borrower_id')
+     owner_id = models.ForeignKey(UserProfile, related_name='owner_id')
+ 
+ # class ToolHistory(models.Model):
+@@ -89,6 +101,7 @@
+ #     category = models.CharField(max_length=20)
+ #     borrower_id = models.CharField(max_length=20)
+ #     date=models.CharField(max_length=20)
++
+ 
+ 
+ '''
+Index: app/forms.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>windows-1252
+===================================================================
+--- app/forms.py	(revision 124)
++++ app/forms.py	(revision )
+@@ -5,50 +5,43 @@
+ import datetime
+ 
+ from django import forms
+-from app.models import User
++from app.models import Shed
++from django.contrib.auth.models import User
+ from app.models import Tool
++from app.models import UserProfile
+ from django.contrib.auth.forms import AuthenticationForm
+ from django.utils.translation import ugettext_lazy as _
++import string
+ 
+ 
+ class BootstrapAuthenticationForm(AuthenticationForm):
+     """Authentication form which uses boostrap CSS."""
+     username = forms.CharField(max_length=254,
+                                widget=forms.TextInput(attrs={
+-                                   'autofocus':'autofocus',
++                                   'autofocus': 'autofocus',
+                                    'class': 'form-control',
+                                    'placeholder': 'User name'}
+                                ))
+     password = forms.CharField(label=_("Password"),
+                                widget=forms.PasswordInput({
+                                    'class': 'form-control',
+-                                   'placeholder':'Password'}))
++                                   'placeholder': 'Password'}))
+ 
+ 
+ class LoginForm(forms.Form):
+-    username = forms.CharField(max_length=24,widget=forms.TextInput(attrs={'autofocus': 'autofocus'}))
+-    password = forms.CharField(widget=forms.PasswordInput())
++    username = forms.CharField(max_length=24, widget=forms.TextInput(attrs={'autofocus': 'autofocus','class':'form-control','style':'width:100%'}))
++    password = forms.CharField(widget=forms.PasswordInput(attrs={'style':'width:100%','class':'form-control'}))
+ 
+-    def clean_username(self):
+-        message = self.cleaned_data['username']
+-        num_words = len(message)
+-        print(num_words)
+-        if message.__eq__(''):
+-            raise forms.ValidationError()
+-        return message
+-
+     def clean_password(self):
+         message = self.cleaned_data['password']
+         num_words = len(message)
+         print(num_words)
+-        if num_words < 1:
+-            raise forms.ValidationError('The password should be longer than 6 character.')
++        if num_words < 6:
++            raise forms.ValidationError('The password should be longer than 6 characters.')
+-        elif num_words >24:
++        elif num_words > 24:
+-            raise forms.ValidationError('The username is longer than 24 character.')
+-        elif message.__eq__(''):
+-            raise forms.ValidationError('The password field is empty.')
+-        return message
++            raise forms.ValidationError('The password should be shorter than 25 characters.')
+ 
++
+ class RegisterUserForm(forms.Form):
+     MALE = 'Male'
+     FEMALE = 'Female'
+@@ -66,17 +59,43 @@
+         (SHED, 'Shed'),
+     )
+ 
+-    first_name = forms.CharField(max_length=100, widget=forms.TextInput(attrs={'autofocus': 'autofocus'}))
+-    last_name = forms.CharField(max_length=100)
+-    address = forms.CharField(max_length=100)
+-    zipcode = forms.CharField(max_length=5)
+-    gender = forms.ChoiceField(widget=forms.RadioSelect, choices=GENDER_CHOICES)
++    first_name = forms.CharField(max_length=100,widget=forms.TextInput(attrs={'autofocus': 'autofocus','class':'form-control','style':'width:100%'}))
++    last_name = forms.CharField(max_length=100,widget=forms.TextInput(attrs={'style':'width:100%','class':'form-control'}))
++    address = forms.CharField(max_length=100,widget=forms.TextInput(attrs={'style':'width:100%','class':'form-control'}))
++    zipcode = forms.CharField(max_length=5,widget=forms.TextInput(attrs={'class':'form-control','style':'width:100%'}))
++    gender = forms.ChoiceField(widget=forms.RadioSelect(attrs={'style':'list-style-type:none'}), choices=GENDER_CHOICES)
+     pickup_arrangement = forms.ChoiceField(widget=forms.RadioSelect, choices=PICKUP_ARRANGEMENT_CHOICES, initial=SHED)
+-    e_mail = forms.EmailField()
+-    username = forms.CharField(max_length=24)
+-    password = forms.CharField(widget=forms.PasswordInput())
++    e_mail = forms.EmailField(widget=forms.TextInput(attrs={'class':'form-control','style':'width:100%'}))
++    username = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control','style':'width:100%'}))
++    password = forms.CharField(widget=forms.PasswordInput(attrs={'class':'form-control','style':'width:100%'}))
+-    
++
++    def clean_first_name(self):
++        text = self.cleaned_data['first_name']
++        if any(char.isdigit()for char in text):
++            raise forms.ValidationError("First name should not contain numbers.")
++
++    def clean_last_name(self):
++        text = self.cleaned_data['last_name']
++        num_words = len(text)
++        if any(char.isdigit()for char in text):
++            raise forms.ValidationError("First name should not contain numbers.")
++
++    def clean_password(self):
++        text = self.cleaned_data['password']
++        num_words = len(text)
++        if num_words < 6:
++            raise forms.ValidationError("Password is too short.")
++
++    def clean_username(self):
++        text = self.cleaned_data['username']
++        print(text)
++        print('in the try')
++        if User.objects.filter(username=text):
++            raise forms.ValidationError('Username has already been registered.')
++
++
+ class RegisterToolForm(forms.Form):
++
+     COMMON_USE = 'Common Use'
+     GARDENING = 'Gardening'
+     WOOD_WORKING = 'Wood Working'
+@@ -103,17 +122,26 @@
+         (INACTIVE, 'Inactive'),
+     )
+ 
+-    tool_name = forms.CharField(max_length=20)
++    tool_name = forms.CharField(max_length=20, widget=forms.TextInput(attrs={'autofocus': 'autofocus','class':'form-control','style':'width:100%;'}))
+     status = forms.ChoiceField(widget=forms.RadioSelect, choices=ACTIVATION_STATUS_CHOICES, initial=ACTIVE)
+     category = forms.ChoiceField(widget=forms.RadioSelect, choices=CATEGORY_CHOICES)
++<<<<<<< .mine
++    special_instruction = forms.CharField(widget=forms.Textarea(attrs={'class':'form-control'}), required=False)
++    unique_field = forms.CharField(max_length=20,widget=forms.TextInput(attrs={'class':'form-control'}), required=False)
++||||||| .r123
+     special_instruction = forms.CharField(widget=forms.Textarea, required=False)
++    #picture = forms.ImageField()
++    unique_field = forms.CharField(max_length=20, required=False)
++=======
++    special_instruction = forms.CharField(widget=forms.Textarea, required=False)
+     image = forms.ImageField()
+     unique_field = forms.CharField(max_length=20, required=False)
++>>>>>>> .r124
+ 
+ 
+ class ShedCreation(forms.Form):
+-    name = forms.CharField(max_length=30, label='Shed name')
+-    address = forms.CharField(max_length=20, label='Shed address')
++    name = forms.CharField(max_length=30, label='Shed name',widget=forms.TextInput(attrs={'autofocus': 'autofocus','class':'form-control','style':'width:100%;'}))
++    address = forms.CharField(max_length=20, label='Shed address',widget=forms.TextInput(attrs={'autofocus': 'autofocus','class':'form-control','style':'width:100%;'}))
+ 
+ 
+ class UpdatePersonalInfoForm(forms.ModelForm):
+@@ -121,11 +149,19 @@
+         model = User
+         fields = ["first_name", "last_name", "email"]
+ 
++
+ class UpdateToolsForm(forms.ModelForm):
+     class Meta:
+         model = Tool
++<<<<<<< .mine
++        fields = ["id", "tool_name", "status", "special_instruction", "unique_field", "category", "model_pic"]
++||||||| .r123
++        fields = ["id","tool_name","status","special_instruction","unique_field","category","model_pic"]
++=======
+         fields = ["id","tool_name","status","special_instruction","unique_field","category","image"]
++>>>>>>> .r124
++
+ 
+ class UpdatePasswordForm(forms.Form):
+     password_1 = forms.CharField(widget=forms.PasswordInput())
+-    password_2 = forms.CharField(widget=forms.PasswordInput())
+\ No newline at end of file
++    password_2 = forms.CharField(widget=forms.PasswordInput())
+Index: app/templates/app/login.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>windows-1252
+===================================================================
+--- app/templates/app/login.html	(revision 123)
++++ app/templates/app/login.html	(revision )
+@@ -14,20 +14,14 @@
+                     <label for="id_username" class="col-md-2 control-label">User name</label>
+                     <div class="col-md-10">
+                         {{ form.username}}
+-                        {% if form.username.errors %}
+-                            {{ form.username.errors }}
++                        {{ form.username.errors }}
+-                        {% endif %}
+-
+                     </div>
+                 </div>
+                 <div class="form-group">
+                     <label for="id_password" class="col-md-2 control-label">Password</label>
+                     <div class="col-md-10">
+                         {{ form.password }}
+-                        {% if form.password.errors %}
+-                            {{ form.password.errors }}
++                        {{ form.password.errors }}
+-                        {% endif %}
+-
+                     </div>
+                 </div>
+                 <div class="form-group">
+Index: app/views.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>windows-1252
+===================================================================
+--- app/views.py	(revision 124)
++++ app/views.py	(revision )
+@@ -1,7 +1,7 @@
+ """
+ Definition of views.
+ """
+-
++from django import forms
+ from datetime import datetime
+ from django.shortcuts import render
+ from django.http import HttpResponseRedirect
+@@ -27,6 +27,7 @@
+ from django.http import Http404
+ from .forms import UpdatePasswordForm
+ from django import forms
++from django.db import IntegrityError
+ 
+ 
+ 
+@@ -98,7 +99,7 @@
+ def register(request):
+     if request.user.is_authenticated():
+         raise Http404(
+-            "You are already logged in. So please go to the main site.")  # the problem with this impl. is if there is data to pass to index.html
++            "You are already logged in. So please go to the main site.")
+     form = RegisterUserForm(initial={'gender': '1'})
+     return render(request,
+                   'app/registeruser.html',
+@@ -113,27 +114,29 @@
+ 
+ 
+ def registerUser(request):
+-    title = ''
++    title = 'Registration'
+     if request.user.is_authenticated():
+         return HttpResponseRedirect('/')
+     if request.method == 'POST':
+         form = RegisterUserForm(request.POST)  # binding the form.
+         if form.is_valid():
+             user = User.objects.create_user(first_name=form.data['first_name'],
+-                                            last_name=form.data['last_name'],
+-                                            email=form.data['e_mail'],
+-                                            username=form.data['username'],
+-                                            password=form.data['password'],
+-                                            )
++                                                last_name=form.data['last_name'],
++                                                email=form.data['e_mail'],
++                                                username=form.data['username'],
++                                                password=form.data['password'],
++                                                )
+             user_profile = UserProfile.objects.create(address=form.data['address'],
+-                                                      pickup_arrangement=form.data['pickup_arrangement'],
+-                                                      gender=form.data['gender'])
++                                                          pickup_arrangement=form.data['pickup_arrangement'],
++                                                          gender=form.data['gender'])
+             user.save()
+             user_profile.is_coordinatorr = False
+             user_profile.zipcode = form.data['zipcode']
+             user_profile.user_id = user
+             user_profile.save()
+             entered_zipcode = form.data['zipcode']
++
++
+             try:
+                 Shed.objects.get(zipcode=entered_zipcode)
+                 form = LoginForm()
+@@ -158,18 +161,20 @@
+     :param request:holds the page that calls register_shed function
+     :return: register shed page, where the user creates the shed for the first time.
+     """
++    print('in register_shed')
+     if request.method == 'POST':
+         form = ShedCreation(request.POST)
++        if form.is_valid():
+-        shed = Shed.objects.get(zipcode=zipcode)
+-        shed.address = form.data['address']
+-        shed.name = form.data['name']
+-        shed.save()
+-        loginform = LoginForm()
+-        title = 'You have been successfuly registered. Now, you can login and see what your new share zone offers to you.'
+-        return render(request, 'app/login.html', {'form': loginform, 'title': title})
++            shed = Shed.objects.get(zipcode=zipcode)
++            shed.address = form.data['address']
++            shed.name = form.data['name']
++            shed.save()
++            loginform = LoginForm()
++            title = 'You have been successfuly registered. Now, you can login and see what your new share zone offers to you.'
++            return render(request, 'app/login.html', {'form': loginform, 'title': title})
+     else:
+         form = ShedCreation()
+-    return render(request, 'app/registershed.html', {'form': form})
++    return render(request, 'app/registershed.html', {'form': form,'zipcode':zipcode})
+ 
+ 
+ def registerTool(request):
+Index: app/templates/app/registeruser.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>windows-1252
+===================================================================
+--- app/templates/app/registeruser.html	(revision 123)
++++ app/templates/app/registeruser.html	(revision )
+@@ -12,56 +12,65 @@
+                 <hr />
+                 <div class="form-group">
+                     <label for="first_name" class="col-md-2 control-label">First name</label>
+-                    <div class="col-md-10">
++                    <div class="col-xs-10">
+                         {{ form.first_name }}
++                        {{ form.first_name.errors }}
+                     </div>
+                 </div>
+                 <div class="form-group">
+                     <label for="last_name" class="col-md-2 control-label">Last Name</label>
+                     <div class="col-md-10">
+                         {{ form.last_name }}
++                        {{ form.last_name.errors }}
+                     </div>
+                 </div>
+                 <div class="form-group">
+                     <label for="gender" class="col-md-2 control-label">Gender</label>
+-                    <div class="col-md-10">
++                    <div class="col-md-10 radio-button">
+                         {{ form.gender }}
++                        {{ form.gender.errors }}
+                     </div>
+                 </div>
+                 <div class="form-group">
+                     <label for="address" class="col-md-2 control-label">Address</label>
+                     <div class="col-md-10">
+                         {{ form.address }}
++                        {{ form.address.errors }}
+                     </div>
+                 </div>
+                 <div class="form-group">
+                     <label for="zipcode" class="col-md-2 control-label">Zip code</label>
+                     <div class="col-md-10">
+                         {{ form.zipcode }}
++                        {{ form.zipcode.errors }}
+                     </div>
+                 </div>
+                 <div class="form-group">
+                     <label for="e_mail" class="col-md-2 control-label">E-mail</label>
+                     <div class="col-md-10">
+                         {{ form.e_mail }}
++                        {{ form.e_mail.errors }}
+                     </div>
+                 </div>
+                 <div class="form-group">
+                     <label for="username" class="col-md-2 control-label">Username</label>
+                     <div class="col-md-10">
+                         {{ form.username }}
++                        {{ form.username.errors }}
+                     </div>
+                 </div>
+                 <div class="form-group">
+                     <label for="password" class="col-md-2 control-label">Password</label>
+                     <div class="col-md-10">
+                         {{ form.password }}
++                        {{ form.password.errors }}
+                     </div>
+                 </div>
+                 <div class="form-group">
+                     <label for="pickup_arrangement" class="col-md-2 control-label">Pickup Arrangement</label>
+-                    <div class="col-md-10">
++                    <div class="col-md-10 radio-button">
+                         {{ form.pickup_arrangement }}
++                        {{ form.pickup_arrangement.errors }}
+                     </div>
+                 </div>
+                 <div class="form-group">
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/workspace.xml	(revision 123)
++++ .idea/workspace.xml	(revision )
+@@ -1,29 +1,22 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
+   <component name="ChangeListManager">
+-    <list default="true" readonly="true" id="a5334bc8-8fe7-4ff7-9c61-bbe61fe9a1e0" name="Default" comment="">
+-<<<<<<< .mine
++    <list default="true" readonly="true" id="61404396-90aa-497d-8c5b-e5ffdc013486" name="Default" comment="">
++      <change type="DELETED" beforePath="C:\Users\Lumbardh\Desktop\Found. of Software Eng\Project\la2225@control\trunk\Code\DjangoWebProject1\app\templates\app\mainsite.html" afterPath="" />
++      <change type="DELETED" beforePath="$PROJECT_DIR$/db.sqlite3" afterPath="" />
+       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.ids" afterPath="$PROJECT_DIR$/.idea/dataSources.ids" />
+       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" />
+       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.xml" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" />
+-||||||| .r68
+-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/migrations/0001_initial.py" afterPath="" />
+-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/migrations/__init__.py" afterPath="" />
+-      <change type="DELETED" beforePath="C:\Users\Lumbardh\Desktop\Found. of Software Eng\Project\la2225@control\trunk\Code\DjangoWebProject1\app\migrations\0002_auto_20151002_1547.py" afterPath="" />
+-      <change type="DELETED" beforePath="C:\Users\Lumbardh\Desktop\Found. of Software Eng\Project\la2225@control\trunk\Code\DjangoWebProject1\app\migrations\0002_auto_20151002_1726.py" afterPath="" />
+-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/migrations" afterPath="" />
+-=======
+-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/migrations" afterPath="" />
+-      <change type="DELETED" beforePath="C:\Users\Lumbardh\Desktop\Found. of Software Eng\Project\la2225@control\trunk\Code\DjangoWebProject1\app\migrations\0002_auto_20151002_1726.py" afterPath="" />
+-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/migrations/0001_initial.py" afterPath="" />
+-      <change type="DELETED" beforePath="C:\Users\Lumbardh\Desktop\Found. of Software Eng\Project\la2225@control\trunk\Code\DjangoWebProject1\app\migrations\0002_auto_20151002_1547.py" afterPath="" />
+-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/migrations/__init__.py" afterPath="" />
+->>>>>>> .r79
+       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/forms.py" afterPath="$PROJECT_DIR$/app/forms.py" />
++      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/templates/app/index.html" afterPath="$PROJECT_DIR$/app/templates/app/index.html" />
++      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/templates/app/layout.html" afterPath="$PROJECT_DIR$/app/templates/app/layout.html" />
+       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/templates/app/login.html" afterPath="$PROJECT_DIR$/app/templates/app/login.html" />
+       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models.py" afterPath="$PROJECT_DIR$/app/models.py" />
+       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/templates/app/registershed.html" afterPath="$PROJECT_DIR$/app/templates/app/registershed.html" />
++      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/templates/app/registertool.html" afterPath="$PROJECT_DIR$/app/templates/app/registertool.html" />
++      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/templates/app/registeruser.html" afterPath="$PROJECT_DIR$/app/templates/app/registeruser.html" />
++      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/static/app/content/site.css" afterPath="$PROJECT_DIR$/app/static/app/content/site.css" />
+       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DjangoWebProject1/urls.py" afterPath="$PROJECT_DIR$/DjangoWebProject1/urls.py" />
+       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views.py" afterPath="$PROJECT_DIR$/app/views.py" />
+       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+@@ -39,9 +32,6 @@
+     <option name="LAST_RESOLUTION" value="IGNORE" />
+   </component>
+   <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
+-  <component name="CoverageDataManager">
+-    <SUITE FILE_PATH="coverage/DjangoWebProject1$forms.coverage" NAME="forms Coverage Results" MODIFIED="1443754369028" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/app" />
+-  </component>
+   <component name="CreatePatchCommitExecutor">
+     <option name="PATCH_PATH" value="" />
+   </component>
+@@ -56,7 +46,7 @@
+         <option name="myItemType" value="com.intellij.database.view.DbRootNodeDescriptor" />
+       </PATH_ELEMENT>
+       <PATH_ELEMENT>
+-        <option name="myItemId" value="SQLite -" />
++        <option name="myItemId" value="Django default" />
+         <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
+       </PATH_ELEMENT>
+       <PATH_ELEMENT>
+@@ -74,230 +64,113 @@
+   </component>
+   <component name="FileEditorManager">
+     <leaf>
+-<<<<<<< .mine
+-      <file leaf-file-name="app_shed" pinned="false" current-in-tab="false">
+-        <entry file="dbDummy://dbtable:/7991901c/480a9058-3ad0-4e95-afee-a99fd79bb02f/..app_shed">
+-          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+-            <state>
+-              <filtering enabled="true" />
+-||||||| .r68
+-      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
+-        <entry file="file://$PROJECT_DIR$/app/views.py">
++      <file leaf-file-name="models.py" pinned="false" current-in-tab="true">
++        <entry file="file://$PROJECT_DIR$/app/models.py">
+           <provider selected="true" editor-type-id="text-editor">
+-            <state vertical-scroll-proportion="0.0">
+-              <caret line="125" column="51" selection-start-line="125" selection-start-column="51" selection-end-line="125" selection-end-column="51" />
++            <state vertical-scroll-proportion="0.9420655">
++              <caret line="80" column="13" selection-start-line="80" selection-start-column="13" selection-end-line="80" selection-end-column="13" />
+               <folding>
+-                <element signature="e#30#59#0" expanded="true" />
++                <element signature="e#30#58#0" expanded="true" />
+               </folding>
+-=======
+-      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
+-        <entry file="file://$PROJECT_DIR$/app/views.py">
+-          <provider selected="true" editor-type-id="text-editor">
+-            <state vertical-scroll-proportion="-14.074074">
+-              <caret line="138" column="30" selection-start-line="138" selection-start-column="30" selection-end-line="138" selection-end-column="30" />
+-              <folding>
+-                <element signature="e#30#59#0" expanded="true" />
+-              </folding>
+->>>>>>> .r79
+             </state>
+           </provider>
+-<<<<<<< .mine
+-          <provider editor-type-id="text-editor">
+-            <state vertical-scroll-proportion="0.0">
+-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+-||||||| .r68
+         </entry>
+       </file>
+-      <file leaf-file-name="layout.html" pinned="false" current-in-tab="true">
+-        <entry file="file://$PROJECT_DIR$/app/templates/app/layout.html">
++      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
++        <entry file="file://$PROJECT_DIR$/app/templates/app/index.html">
+           <provider selected="true" editor-type-id="text-editor">
+-            <state vertical-scroll-proportion="1.7520891">
+-              <caret line="40" column="15" selection-start-line="40" selection-start-column="15" selection-end-line="40" selection-end-column="15" />
+-=======
+-        </entry>
+-      </file>
+-      <file leaf-file-name="registertool.html" pinned="false" current-in-tab="false">
+-        <entry file="file://$PROJECT_DIR$/app/templates/app/registertool.html">
+-          <provider selected="true" editor-type-id="text-editor">
+-            <state vertical-scroll-proportion="-7.5">
+-              <caret line="12" column="16" selection-start-line="12" selection-start-column="16" selection-end-line="13" selection-end-column="21" />
+->>>>>>> .r79
++            <state vertical-scroll-proportion="-0.0">
++              <caret line="104" column="47" selection-start-line="104" selection-start-column="45" selection-end-line="104" selection-end-column="47" />
+               <folding />
+             </state>
+           </provider>
+         </entry>
+       </file>
+-<<<<<<< .mine
+-      <file leaf-file-name="login.html" pinned="false" current-in-tab="false">
+-        <entry file="file://$PROJECT_DIR$/app/templates/app/login.html">
+-||||||| .r68
+-      <file leaf-file-name="site.css" pinned="false" current-in-tab="false">
+-        <entry file="file://$PROJECT_DIR$/app/static/app/content/site.css">
+-=======
+-      <file leaf-file-name="toolTable.html" pinned="false" current-in-tab="true">
+-        <entry file="file://$PROJECT_DIR$/app/templates/app/toolTable.html">
+->>>>>>> .r79
++      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
++        <entry file="file://$PROJECT_DIR$/app/views.py">
+           <provider selected="true" editor-type-id="text-editor">
+-<<<<<<< .mine
+-            <state vertical-scroll-proportion="-5.230769">
+-              <caret line="8" column="27" selection-start-line="8" selection-start-column="27" selection-end-line="8" selection-end-column="27" />
+-||||||| .r68
+             <state vertical-scroll-proportion="0.0">
+-              <caret line="17" column="1" selection-start-line="17" selection-start-column="1" selection-end-line="17" selection-end-column="1" />
+-=======
+-            <state vertical-scroll-proportion="0.43338683">
+-              <caret line="18" column="20" selection-start-line="18" selection-start-column="20" selection-end-line="18" selection-end-column="20" />
+->>>>>>> .r79
+-              <folding />
++              <caret line="199" column="13" selection-start-line="199" selection-start-column="13" selection-end-line="199" selection-end-column="13" />
++              <folding>
++                <element signature="e#29#53#0" expanded="true" />
++              </folding>
+             </state>
+           </provider>
+         </entry>
+       </file>
+-      <file leaf-file-name="layout.html" pinned="false" current-in-tab="false">
+-        <entry file="file://$PROJECT_DIR$/app/templates/app/layout.html">
++      <file leaf-file-name="registeruser.html" pinned="false" current-in-tab="false">
++        <entry file="file://$PROJECT_DIR$/app/templates/app/registeruser.html">
+           <provider selected="true" editor-type-id="text-editor">
+-            <state vertical-scroll-proportion="-25.0">
+-              <caret line="40" column="15" selection-start-line="40" selection-start-column="15" selection-end-line="40" selection-end-column="15" />
++            <state vertical-scroll-proportion="-7.1923075">
++              <caret line="70" column="54" selection-start-line="70" selection-start-column="54" selection-end-line="70" selection-end-column="54" />
+               <folding />
+             </state>
+           </provider>
+         </entry>
+       </file>
+-      <file leaf-file-name="loginpartial.html" pinned="false" current-in-tab="false">
+-        <entry file="file://$PROJECT_DIR$/app/templates/app/loginpartial.html">
++      <file leaf-file-name="registertool.html" pinned="false" current-in-tab="false">
++        <entry file="file://$PROJECT_DIR$/app/templates/app/registertool.html">
+           <provider selected="true" editor-type-id="text-editor">
+-<<<<<<< .mine
+-            <state vertical-scroll-proportion="-4.576923">
+-              <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+-||||||| .r68
+-            <state vertical-scroll-proportion="-3.2692308">
+-              <caret line="5" column="7" selection-start-line="5" selection-start-column="7" selection-end-line="5" selection-end-column="7" />
+-=======
+-            <state vertical-scroll-proportion="0.0">
+-              <caret line="5" column="7" selection-start-line="5" selection-start-column="7" selection-end-line="5" selection-end-column="7" />
+->>>>>>> .r79
++            <state vertical-scroll-proportion="5.8846154">
++              <caret line="39" column="0" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
+               <folding />
+             </state>
+           </provider>
+         </entry>
+       </file>
+-      <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
+-        <entry file="file://$PROJECT_DIR$/DjangoWebProject1/urls.py">
++      <file leaf-file-name="site.css" pinned="false" current-in-tab="false">
++        <entry file="file://$PROJECT_DIR$/app/static/app/content/site.css">
+           <provider selected="true" editor-type-id="text-editor">
+-<<<<<<< .mine
+             <state vertical-scroll-proportion="0.0">
+-              <caret line="22" column="37" selection-start-line="22" selection-start-column="37" selection-end-line="22" selection-end-column="37" />
+-||||||| .r68
+-            <state vertical-scroll-proportion="-1.3076923">
+-              <caret line="2" column="39" selection-start-line="2" selection-start-column="39" selection-end-line="2" selection-end-column="55" />
+-=======
+-            <state vertical-scroll-proportion="0.0">
+-              <caret line="2" column="39" selection-start-line="2" selection-start-column="39" selection-end-line="2" selection-end-column="55" />
+->>>>>>> .r79
++              <caret line="61" column="20" selection-start-line="61" selection-start-column="20" selection-end-line="61" selection-end-column="20" />
+               <folding />
+             </state>
+           </provider>
+         </entry>
+       </file>
+-      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
+-        <entry file="file://$PROJECT_DIR$/app/views.py">
+-          <provider selected="true" editor-type-id="text-editor">
+-<<<<<<< .mine
+-            <state vertical-scroll-proportion="0.6077922">
+-              <caret line="111" column="126" selection-start-line="111" selection-start-column="126" selection-end-line="111" selection-end-column="126" />
+-              <folding>
+-                <element signature="e#30#59#0" expanded="true" />
+-              </folding>
+-||||||| .r68
+-            <state vertical-scroll-proportion="-1.9615384">
+-              <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+-              <folding />
+-=======
++      <file leaf-file-name="auth_user" pinned="false" current-in-tab="false">
++        <entry file="dbDummy://dbtable:/7991901c/892a6cbe-0a3a-430d-a0b6-dd9dd94bcca7/..auth_user">
++          <provider editor-type-id="text-editor">
+             <state vertical-scroll-proportion="0.0">
+-              <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+-              <folding />
+->>>>>>> .r79
+-            </state>
+-          </provider>
+-        </entry>
+-      </file>
+-      <file leaf-file-name="registeruser.html" pinned="false" current-in-tab="false">
+-        <entry file="file://$PROJECT_DIR$/app/templates/app/registeruser.html">
+-          <provider selected="true" editor-type-id="text-editor">
+-<<<<<<< .mine
+-            <state vertical-scroll-proportion="-0.0">
+               <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+-||||||| .r68
+-            <state vertical-scroll-proportion="-8.5">
+-              <caret line="13" column="11" selection-start-line="13" selection-start-column="11" selection-end-line="13" selection-end-column="11" />
+-=======
+-            <state vertical-scroll-proportion="0.0">
+-              <caret line="13" column="11" selection-start-line="13" selection-start-column="11" selection-end-line="13" selection-end-column="11" />
+->>>>>>> .r79
+               <folding />
+             </state>
+           </provider>
+-        </entry>
+-      </file>
+-      <file leaf-file-name="tests.py" pinned="false" current-in-tab="false">
+-        <entry file="file://$PROJECT_DIR$/app/tests.py">
+-          <provider selected="true" editor-type-id="text-editor">
+-<<<<<<< .mine
+-            <state vertical-scroll-proportion="0.0">
+-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+-||||||| .r68
+-            <state vertical-scroll-proportion="-18.307692">
+-              <caret line="28" column="26" selection-start-line="21" selection-start-column="27" selection-end-line="21" selection-end-column="31" />
+-=======
+-            <state vertical-scroll-proportion="0.0">
+-              <caret line="28" column="26" selection-start-line="21" selection-start-column="27" selection-end-line="21" selection-end-column="31" />
+->>>>>>> .r79
+-              <folding />
++          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
++            <state>
++              <filtering enabled="true" />
+             </state>
+           </provider>
+         </entry>
+       </file>
+-      <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
+-        <entry file="file://$PROJECT_DIR$/app/models.py">
++      <file leaf-file-name="forms.py" pinned="false" current-in-tab="false">
++        <entry file="file://$PROJECT_DIR$/app/forms.py">
+           <provider selected="true" editor-type-id="text-editor">
+             <state vertical-scroll-proportion="0.0">
+-              <caret line="15" column="58" selection-start-line="15" selection-start-column="58" selection-end-line="15" selection-end-column="58" />
+-              <folding />
++              <caret line="157" column="13" selection-start-line="156" selection-start-column="0" selection-end-line="159" selection-end-column="7" />
++              <folding>
++                <element signature="e#30#45#0" expanded="true" />
++              </folding>
+             </state>
+           </provider>
+         </entry>
+       </file>
+     </leaf>
+   </component>
+-  <component name="FileTemplateManagerImpl">
+-    <option name="RECENT_TEMPLATES">
+-      <list>
+-        <option value="Html5" />
+-      </list>
+-    </option>
+-  </component>
+   <component name="IdeDocumentHistory">
+     <option name="CHANGED_PATHS">
+       <list>
+-        <option value="$PROJECT_DIR$/DjangoWebProject1/settings.py" />
+-        <option value="$PROJECT_DIR$/app/templates/app/menupartial.html" />
+-        <option value="$PROJECT_DIR$/app/static/app/content/site.css" />
+-        <option value="$PROJECT_DIR$/app/templates/app/reistershed.html" />
+         <option value="$PROJECT_DIR$/app/templates/app/layout.html" />
+-        <option value="$PROJECT_DIR$/app/templates/app/registershed.html" />
+-        <option value="$PROJECT_DIR$/app/forms.py" />
+         <option value="$PROJECT_DIR$/DjangoWebProject1/urls.py" />
+-        <option value="$PROJECT_DIR$/app/models.py" />
+-<<<<<<< .mine
++        <option value="$PROJECT_DIR$/app/templates/app/index.html" />
+         <option value="$PROJECT_DIR$/app/templates/app/login.html" />
++        <option value="$PROJECT_DIR$/app/models.py" />
++        <option value="$PROJECT_DIR$/app/templates/app/registershed.html" />
+         <option value="$PROJECT_DIR$/app/views.py" />
+-||||||| .r68
+-        <option value="$PROJECT_DIR$/app/views.py" />
+-=======
+->>>>>>> .r79
+-        <option value="$PROJECT_DIR$/app/views.py" />
++        <option value="$PROJECT_DIR$/app/static/app/content/site.css" />
++        <option value="$PROJECT_DIR$/app/templates/app/registeruser.html" />
+         <option value="$PROJECT_DIR$/app/templates/app/registertool.html" />
+-        <option value="$PROJECT_DIR$/app/templates/app/toolTable.html" />
++        <option value="$PROJECT_DIR$/app/forms.py" />
+       </list>
+     </option>
+   </component>
+@@ -309,30 +182,11 @@
+     <order />
+   </component>
+   <component name="ProjectFrameBounds">
+-    <option name="x" value="4" />
+-    <option name="y" value="23" />
+-    <option name="width" value="1133" />
++    <option name="x" value="-8" />
++    <option name="y" value="-8" />
++    <option name="width" value="1370" />
+     <option name="height" value="744" />
+   </component>
+-  <component name="ProjectInspectionProfilesVisibleTreeState">
+-    <entry key="Project Default">
+-      <profile-state>
+-        <expanded-state>
+-          <State>
+-            <id />
+-          </State>
+-          <State>
+-            <id>Django</id>
+-          </State>
+-        </expanded-state>
+-        <selected-state>
+-          <State>
+-            <id>DjangoCloseTagInspection</id>
+-          </State>
+-        </selected-state>
+-      </profile-state>
+-    </entry>
+-  </component>
+   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
+     <OptionsSetting value="true" id="Add" />
+     <OptionsSetting value="true" id="Remove" />
+@@ -356,14 +210,6 @@
+       <sortByType />
+     </navigator>
+     <panes>
+-<<<<<<< .mine
+-      <pane id="Scope" />
+-||||||| .r68
+-      <pane id="Scratches" />
+-=======
+-      <pane id="Scope" />
+-      <pane id="Scratches" />
+->>>>>>> .r79
+       <pane id="ProjectPane">
+         <subPane>
+           <PATH>
+@@ -476,32 +322,119 @@
+               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+             </PATH_ELEMENT>
+             <PATH_ELEMENT>
++              <option name="myItemId" value="app" />
++              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
++            </PATH_ELEMENT>
++            <PATH_ELEMENT>
++              <option name="myItemId" value="migrations" />
++              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
++            </PATH_ELEMENT>
++          </PATH>
++          <PATH>
++            <PATH_ELEMENT>
+               <option name="myItemId" value="DjangoWebProject1" />
++              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
++            </PATH_ELEMENT>
++            <PATH_ELEMENT>
++              <option name="myItemId" value="DjangoWebProject1" />
+               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+             </PATH_ELEMENT>
++            <PATH_ELEMENT>
++              <option name="myItemId" value="DjangoWebProject1" />
++              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
++            </PATH_ELEMENT>
+           </PATH>
+         </subPane>
+       </pane>
+-<<<<<<< .mine
+       <pane id="Scratches" />
+-||||||| .r68
+       <pane id="Scope" />
+-=======
+->>>>>>> .r79
+     </panes>
+   </component>
+   <component name="PropertiesComponent">
+-    <property name="last_opened_file_path" value="$PROJECT_DIR$/db.sqlite3" />
++    <property name="settings.editor.selected.configurable" value="vcs.Subversion" />
++    <property name="last_opened_file_path" value="C:/Program Files/TortoiseSVN/bin/TortoisePlink.exe" />
++    <property name="settings.editor.splitter.proportion" value="0.2" />
+     <property name="WebServerToolWindowFactoryState" value="false" />
+     <property name="recentsLimit" value="5" />
+-    <property name="restartRequiresConfirmation" value="true" />
+-    <property name="settings.editor.selected.configurable" value="editor.preferences.appearance" />
+-    <property name="settings.editor.splitter.proportion" value="0.2" />
+-    <property name="FullScreen" value="false" />
+     <property name="dynamic.classpath" value="false" />
+-    <property name="DefaultHtmlFileTemplate" value="Html5" />
++    <property name="FullScreen" value="false" />
++    <property name="restartRequiresConfirmation" value="true" />
+   </component>
+-  <component name="RunManager">
++  <component name="RunManager" selected="Django server.DjangoWebProject1">
++    <configuration default="true" type="DjangoTestsConfigurationType" factoryName="Django tests">
++      <option name="INTERPRETER_OPTIONS" value="" />
++      <option name="PARENT_ENVS" value="true" />
++      <envs>
++        <env name="PYTHONUNBUFFERED" value="1" />
++      </envs>
++      <option name="SDK_HOME" value="" />
++      <option name="WORKING_DIRECTORY" value="" />
++      <option name="IS_MODULE_SDK" value="false" />
++      <option name="ADD_CONTENT_ROOTS" value="true" />
++      <option name="ADD_SOURCE_ROOTS" value="true" />
++      <module name="DjangoWebProject1" />
++      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
++      <option name="TARGET" value="" />
++      <option name="SETTINGS_FILE" value="" />
++      <option name="CUSTOM_SETTINGS" value="false" />
++      <option name="USE_OPTIONS" value="false" />
++      <option name="OPTIONS" value="" />
++      <method />
++    </configuration>
++    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
++      <method />
++    </configuration>
++    <configuration default="true" type="PyBehaveRunConfigurationType" factoryName="Behave">
++      <option name="INTERPRETER_OPTIONS" value="" />
++      <option name="PARENT_ENVS" value="true" />
++      <envs />
++      <option name="SDK_HOME" value="" />
++      <option name="WORKING_DIRECTORY" value="" />
++      <option name="IS_MODULE_SDK" value="false" />
++      <option name="ADD_CONTENT_ROOTS" value="true" />
++      <option name="ADD_SOURCE_ROOTS" value="true" />
++      <module name="DjangoWebProject1" />
++      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
++      <option name="ADDITIONAL_ARGS" value="" />
++      <method />
++    </configuration>
++    <configuration default="true" type="PyLettuceRunConfigurationType" factoryName="Lettuce">
++      <option name="INTERPRETER_OPTIONS" value="" />
++      <option name="PARENT_ENVS" value="true" />
++      <envs />
++      <option name="SDK_HOME" value="" />
++      <option name="WORKING_DIRECTORY" value="" />
++      <option name="IS_MODULE_SDK" value="false" />
++      <option name="ADD_CONTENT_ROOTS" value="true" />
++      <option name="ADD_SOURCE_ROOTS" value="true" />
++      <module name="DjangoWebProject1" />
++      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
++      <option name="ADDITIONAL_ARGS" value="" />
++      <method />
++    </configuration>
++    <configuration default="true" type="Python.DjangoServer" factoryName="Django server">
++      <option name="INTERPRETER_OPTIONS" value="" />
++      <option name="PARENT_ENVS" value="true" />
++      <envs>
++        <env name="PYTHONUNBUFFERED" value="1" />
++      </envs>
++      <option name="SDK_HOME" value="" />
++      <option name="WORKING_DIRECTORY" value="" />
++      <option name="IS_MODULE_SDK" value="false" />
++      <option name="ADD_CONTENT_ROOTS" value="true" />
++      <option name="ADD_SOURCE_ROOTS" value="true" />
++      <module name="DjangoWebProject1" />
++      <option name="launchJavascriptDebuger" value="false" />
++      <option name="port" value="8000" />
++      <option name="host" value="" />
++      <option name="additionalOptions" value="" />
++      <option name="browserUrl" value="" />
++      <option name="runTestServer" value="false" />
++      <option name="runNoReload" value="false" />
++      <option name="useCustomRunCommand" value="false" />
++      <option name="customRunCommand" value="" />
++      <method />
++    </configuration>
+     <configuration default="true" type="PythonConfigurationType" factoryName="Python">
+       <option name="INTERPRETER_OPTIONS" value="" />
+       <option name="PARENT_ENVS" value="true" />
+@@ -520,6 +453,15 @@
+       <option name="SHOW_COMMAND_LINE" value="false" />
+       <method />
+     </configuration>
++    <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
++      <node-options />
++      <gulpfile />
++      <tasks />
++      <arguments />
++      <pass-parent-envs>true</pass-parent-envs>
++      <envs />
++      <method />
++    </configuration>
+     <configuration default="true" type="tests" factoryName="Attests">
+       <option name="INTERPRETER_OPTIONS" value="" />
+       <option name="PARENT_ENVS" value="true" />
+@@ -637,7 +579,7 @@
+         <env name="PYTHONUNBUFFERED" value="1" />
+         <env name="DJANGO_SETTINGS_MODULE" value="DjangoWebProject1.settings" />
+       </envs>
+-      <option name="SDK_HOME" value="C:\Python34\python.exe" />
++      <option name="SDK_HOME" value="" />
+       <option name="WORKING_DIRECTORY" value="" />
+       <option name="IS_MODULE_SDK" value="false" />
+       <option name="ADD_CONTENT_ROOTS" value="true" />
+@@ -645,106 +587,99 @@
+       <module name="DjangoWebProject1" />
+       <option name="launchJavascriptDebuger" value="false" />
+       <option name="port" value="8000" />
+-      <option name="host" value="localhost" />
++      <option name="host" value="" />
+       <option name="additionalOptions" value="" />
+-      <option name="browserUrl" value="http://localhost:8000/" />
++      <option name="browserUrl" value="" />
+       <option name="runTestServer" value="false" />
+       <option name="runNoReload" value="false" />
+       <option name="useCustomRunCommand" value="false" />
+       <option name="customRunCommand" value="" />
+       <method />
+     </configuration>
++    <list size="1">
++      <item index="0" class="java.lang.String" itemvalue="Django server.DjangoWebProject1" />
++    </list>
+   </component>
+   <component name="ShelveChangesManager" show_recycled="false" />
+   <component name="SvnConfiguration" cleanupOnStartRun="true">
+-    <configuration>$USER_HOME$/.subversion</configuration>
++    <configuration>C:\Users\Lumbardh\AppData\Roaming\Subversion</configuration>
+     <supportedVersion>125</supportedVersion>
++    <option name="sshExecutablePath" value="C:\Program Files\TortoiseSVN\bin\TortoisePlink.exe" />
++    <option name="sshUserName" value="la2225@control.se.rit.edu" />
++    <option name="sshPrivateKeyPath" value="E:\Subversion (SVN)\la2225.ppk" />
+   </component>
++  <component name="SvnFileUrlMappingImpl">
++    <option name="myMappingRoots">
++      <list>
++        <SvnCopyRootSimple>
++          <option name="myVcsRoot" value="C:\Users\Lumbardh\Desktop\Found. of Software Eng\Project\la2225@control\trunk\Code\DjangoWebProject1" />
++          <option name="myCopyRoot" value="C:\Users\Lumbardh\Desktop\Found. of Software Eng\Project\la2225@control\trunk\Code\DjangoWebProject1" />
++        </SvnCopyRootSimple>
++      </list>
++    </option>
++    <option name="myMoreRealMappingRoots">
++      <list>
++        <SvnCopyRootSimple>
++          <option name="myVcsRoot" value="C:\Users\Lumbardh\Desktop\Found. of Software Eng\Project\la2225@control\trunk\Code\DjangoWebProject1" />
++          <option name="myCopyRoot" value="C:\Users\Lumbardh\Desktop\Found. of Software Eng\Project\la2225@control\trunk\Code\DjangoWebProject1" />
++        </SvnCopyRootSimple>
++      </list>
++    </option>
++  </component>
+   <component name="TaskManager">
+     <task active="true" id="Default" summary="Default task">
+-      <changelist id="a5334bc8-8fe7-4ff7-9c61-bbe61fe9a1e0" name="Default" comment="" />
+-      <created>1443291940920</created>
++      <changelist id="61404396-90aa-497d-8c5b-e5ffdc013486" name="Default" comment="" />
++      <created>1443914024648</created>
+       <option name="number" value="Default" />
+-      <updated>1443291940920</updated>
++      <updated>1443914024648</updated>
+     </task>
+     <servers />
+   </component>
+-  <component name="TodoView" selected-index="3">
+-    <todo-panel id="selected-file">
+-      <is-autoscroll-to-source value="true" />
+-    </todo-panel>
+-    <todo-panel id="all">
+-      <are-packages-shown value="true" />
+-      <is-autoscroll-to-source value="true" />
+-    </todo-panel>
+-  </component>
+   <component name="ToolWindowManager">
+-    <frame x="4" y="23" width="1133" height="744" extended-state="0" />
++    <frame x="-8" y="-8" width="1370" height="744" extended-state="0" />
+     <editor active="true" />
+     <layout>
+-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32843137" sideWeight="0.4969743" order="12" side_tool="false" content_ui="tabs" />
+-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32843137" sideWeight="0.49394855" order="6" side_tool="false" content_ui="tabs" />
+-<<<<<<< .mine
+-      <window_info id="manage.py@DjangoWebProject1" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3251634" sideWeight="0.4908397" order="7" side_tool="false" content_ui="tabs" />
+-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3251634" sideWeight="0.5091603" order="13" side_tool="true" content_ui="tabs" />
+-||||||| .r68
+-      <window_info id="manage.py@DjangoWebProject1" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32626426" sideWeight="0.49394855" order="7" side_tool="false" content_ui="tabs" />
+-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3888889" sideWeight="0.5151286" order="13" side_tool="true" content_ui="tabs" />
+-=======
++      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25725192" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
++      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
++      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
++      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
++      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.15954198" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
++      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32843137" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
++      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32843137" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
++      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.30555555" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+->>>>>>> .r79
+-      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22947925" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+-      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32843137" sideWeight="0.4969743" order="9" side_tool="false" content_ui="tabs" />
++      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32843137" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3888889" sideWeight="0.5151286" order="13" side_tool="true" content_ui="tabs" />
+-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3137255" sideWeight="0.4969743" order="10" side_tool="false" content_ui="tabs" />
+-<<<<<<< .mine
+-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32189542" sideWeight="0.48167938" order="2" side_tool="false" content_ui="tabs" />
+-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32843137" sideWeight="0.4969743" order="12" side_tool="false" content_ui="tabs" />
+-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21068703" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25267175" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24961832" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+-||||||| .r68
+-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3882545" sideWeight="0.48487142" order="2" side_tool="false" content_ui="tabs" />
+-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32843137" sideWeight="0.4969743" order="12" side_tool="false" content_ui="tabs" />
+-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22977099" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24198474" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+-=======
++      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+-      <window_info id="manage.py@DjangoWebProject1" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32626426" sideWeight="0.49394855" order="7" side_tool="false" content_ui="tabs" />
++      <window_info id="manage.py@DjangoWebProject1" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32843137" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
++      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32843137" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24198474" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+->>>>>>> .r79
+-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32913387" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3882545" sideWeight="0.48487142" order="2" side_tool="false" content_ui="tabs" />
++      <window_info id="SVN Properties" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32843137" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
++      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
++      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
++      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+     </layout>
+     <layout-to-restore>
+-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32843137" sideWeight="0.49394855" order="6" side_tool="false" content_ui="tabs" />
+-      <window_info id="manage.py@DjangoWebProject1" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3251634" sideWeight="0.49394855" order="7" side_tool="false" content_ui="tabs" />
++      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32913387" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
++      <window_info id="manage.py@DjangoWebProject1" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32843137" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
++      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32843137" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
+       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3888889" sideWeight="0.5151286" order="13" side_tool="true" content_ui="tabs" />
+-      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
++      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
++      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+-      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32843137" sideWeight="0.4969743" order="9" side_tool="false" content_ui="tabs" />
+-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3137255" sideWeight="0.4969743" order="10" side_tool="false" content_ui="tabs" />
+-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39215687" sideWeight="0.48487142" order="2" side_tool="false" content_ui="tabs" />
+-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32843137" sideWeight="0.4969743" order="12" side_tool="false" content_ui="tabs" />
+-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.13664122" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
++      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32843137" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
++      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32843137" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
++      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.30555555" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
++      <window_info id="SVN Properties" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32843137" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
++      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32843137" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
++      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25725192" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
++      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.15954198" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+@@ -764,665 +699,450 @@
+     <option name="myLimit" value="2678400000" />
+   </component>
+   <component name="VcsManagerConfiguration">
+-    <MESSAGE value="A  comment commited from Pycharm" />
+-    <option name="LAST_COMMIT_MESSAGE" value="A  comment commited from Pycharm" />
++    <option name="LAST_COMMIT_MESSAGE" value="" />
+   </component>
+   <component name="XDebuggerManager">
+-    <breakpoint-manager>
+-      <option name="time" value="4" />
+-    </breakpoint-manager>
++    <breakpoint-manager />
+     <watches-manager />
+   </component>
+   <component name="editorHistoryManager">
+-<<<<<<< .mine
+-    <entry file="file://$PROJECT_DIR$/app/forms.py">
+-||||||| .r68
+-    <entry file="file://$PROJECT_DIR$/app/templates/app/registershed.html">
+-=======
+-    <entry file="file://$PROJECT_DIR$/app/templates/app/layout.html">
++    <entry file="file://$PROJECT_DIR$/app/views.py">
+       <provider selected="true" editor-type-id="text-editor">
+         <state vertical-scroll-proportion="0.0">
+           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+-          <folding />
++          <folding>
++            <element signature="e#29#53#0" expanded="true" />
++          </folding>
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/app/static/app/content/site.css">
++    <entry file="file://$PROJECT_DIR$/app/views.py">
+       <provider selected="true" editor-type-id="text-editor">
+         <state vertical-scroll-proportion="0.0">
+-          <caret line="17" column="1" selection-start-line="17" selection-start-column="1" selection-end-line="17" selection-end-column="1" />
+-          <folding />
++          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
++          <folding>
++            <element signature="e#29#53#0" expanded="true" />
++          </folding>
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/app/templates/app/loginpartial.html">
++    <entry file="file://$PROJECT_DIR$/app/views.py">
+       <provider selected="true" editor-type-id="text-editor">
+         <state vertical-scroll-proportion="0.0">
+-          <caret line="5" column="7" selection-start-line="5" selection-start-column="7" selection-end-line="5" selection-end-column="7" />
+-          <folding />
++          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
++          <folding>
++            <element signature="e#29#53#0" expanded="true" />
++          </folding>
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/app/templates/app/menupartial.html">
++    <entry file="file://$PROJECT_DIR$/app/views.py">
+       <provider selected="true" editor-type-id="text-editor">
+         <state vertical-scroll-proportion="0.0">
+-          <caret line="2" column="39" selection-start-line="2" selection-start-column="39" selection-end-line="2" selection-end-column="55" />
+-          <folding />
++          <caret line="151" column="26" selection-start-line="151" selection-start-column="26" selection-end-line="151" selection-end-column="26" />
++          <folding>
++            <element signature="e#29#53#0" expanded="true" />
++          </folding>
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/app/templates/app/registershed.html">
+->>>>>>> .r79
+-      <provider selected="true" editor-type-id="text-editor">
+-        <state vertical-scroll-proportion="0.0">
+-<<<<<<< .mine
+-          <caret line="86" column="66" selection-start-line="86" selection-start-column="66" selection-end-line="86" selection-end-column="66" />
+-||||||| .r68
+-          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+-=======
+-          <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+-          <folding />
+-        </state>
+-      </provider>
+-    </entry>
+-    <entry file="file://$PROJECT_DIR$/app/templates/app/index.html">
+-      <provider selected="true" editor-type-id="text-editor">
+-        <state vertical-scroll-proportion="0.0">
+-          <caret line="13" column="11" selection-start-line="13" selection-start-column="11" selection-end-line="13" selection-end-column="11" />
+-          <folding />
+-        </state>
+-      </provider>
+-    </entry>
+-    <entry file="file://$PROJECT_DIR$/app/templates/app/register.html">
+-      <provider selected="true" editor-type-id="text-editor">
+-        <state vertical-scroll-proportion="0.0">
+-          <caret line="28" column="26" selection-start-line="21" selection-start-column="27" selection-end-line="21" selection-end-column="31" />
+-          <folding />
+-        </state>
+-      </provider>
+-    </entry>
+     <entry file="file://$PROJECT_DIR$/app/forms.py">
+       <provider selected="true" editor-type-id="text-editor">
+         <state vertical-scroll-proportion="0.0">
+-          <caret line="85" column="66" selection-start-line="85" selection-start-column="66" selection-end-line="85" selection-end-column="66" />
+-          <folding />
++          <caret line="49" column="49" selection-start-line="49" selection-start-column="49" selection-end-line="49" selection-end-column="49" />
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/app/templates/app/registershed.html">
++    <entry file="file://$PROJECT_DIR$/app/templates/app/layout.html">
+       <provider selected="true" editor-type-id="text-editor">
+         <state vertical-scroll-proportion="0.0">
+-          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+->>>>>>> .r79
+-          <folding />
++          <caret line="102" column="0" selection-start-line="102" selection-start-column="0" selection-end-line="102" selection-end-column="0" />
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/app/templates/app/registershed.html">
++    <entry file="file://$PROJECT_DIR$/app/templates/app/index.html">
+       <provider selected="true" editor-type-id="text-editor">
+         <state vertical-scroll-proportion="0.0">
+           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+-          <folding />
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/app/tests.py">
++    <entry file="file://$PROJECT_DIR$/app/templates/app/loginpartial.html">
+       <provider selected="true" editor-type-id="text-editor">
+         <state vertical-scroll-proportion="0.0">
+           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/app/forms.py">
++    <entry file="file://$PROJECT_DIR$/app/static/app/content/site.css">
+       <provider selected="true" editor-type-id="text-editor">
+         <state vertical-scroll-proportion="0.0">
+-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+-          <folding />
++          <caret line="53" column="0" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/app/views.py">
++    <entry file="file://$PROJECT_DIR$/app/templates/app/login.html">
+       <provider selected="true" editor-type-id="text-editor">
+         <state vertical-scroll-proportion="0.0">
+-          <caret line="53" column="27" selection-start-line="53" selection-start-column="27" selection-end-line="53" selection-end-column="27" />
+-          <folding>
+-            <element signature="e#30#59#0" expanded="true" />
+-          </folding>
++          <caret line="54" column="14" selection-start-line="54" selection-start-column="14" selection-end-line="54" selection-end-column="14" />
+         </state>
+       </provider>
+     </entry>
+     <entry file="file://$PROJECT_DIR$/DjangoWebProject1/urls.py">
+       <provider selected="true" editor-type-id="text-editor">
+         <state vertical-scroll-proportion="0.0">
+-          <caret line="40" column="0" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
++          <caret line="35" column="68" selection-start-line="35" selection-start-column="68" selection-end-line="35" selection-end-column="68" />
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/app/templates/app/contact.html">
++    <entry file="file://$PROJECT_DIR$/app/views.py">
+       <provider selected="true" editor-type-id="text-editor">
+         <state vertical-scroll-proportion="0.0">
+-          <caret line="9" column="17" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="17" />
++          <caret line="351" column="29" selection-start-line="351" selection-start-column="29" selection-end-line="351" selection-end-column="29" />
++          <folding>
++            <element signature="e#29#53#0" expanded="true" />
++          </folding>
+         </state>
+       </provider>
+     </entry>
+     <entry file="file://$PROJECT_DIR$/app/models.py">
+       <provider selected="true" editor-type-id="text-editor">
+         <state vertical-scroll-proportion="0.0">
+-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
++          <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+           <folding>
+-            <element signature="e#30#58#0" expanded="false" />
++            <element signature="e#30#58#0" expanded="true" />
+           </folding>
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/app/tests.py">
++    <entry file="file://$PROJECT_DIR$/DjangoWebProject1/urls.py">
+       <provider selected="true" editor-type-id="text-editor">
+         <state vertical-scroll-proportion="0.0">
+-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
++          <caret line="43" column="29" selection-start-line="43" selection-start-column="29" selection-end-line="43" selection-end-column="29" />
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/app/forms.py">
++    <entry file="file://$PROJECT_DIR$/app/templates/app/updateuserinfo.html">
+       <provider selected="true" editor-type-id="text-editor">
+         <state vertical-scroll-proportion="0.0">
+-          <caret line="33" column="0" selection-start-line="32" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
+-          <folding />
++          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+         </state>
+       </provider>
+     </entry>
+     <entry file="file://$PROJECT_DIR$/app/views.py">
+       <provider selected="true" editor-type-id="text-editor">
+         <state vertical-scroll-proportion="0.0">
+-          <caret line="53" column="27" selection-start-line="53" selection-start-column="27" selection-end-line="53" selection-end-column="27" />
++          <caret line="351" column="29" selection-start-line="351" selection-start-column="29" selection-end-line="351" selection-end-column="29" />
+           <folding>
+-            <element signature="e#30#59#0" expanded="true" />
++            <element signature="e#29#53#0" expanded="true" />
+           </folding>
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/DjangoWebProject1/urls.py">
+-      <provider selected="true" editor-type-id="text-editor">
+-        <state vertical-scroll-proportion="0.0">
+-          <caret line="40" column="0" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
+-        </state>
+-      </provider>
+-    </entry>
+-    <entry file="file://$PROJECT_DIR$/app/templates/app/contact.html">
+-      <provider selected="true" editor-type-id="text-editor">
+-        <state vertical-scroll-proportion="0.0">
+-          <caret line="9" column="17" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="17" />
+-        </state>
+-      </provider>
+-    </entry>
+     <entry file="file://$PROJECT_DIR$/app/models.py">
+       <provider selected="true" editor-type-id="text-editor">
+         <state vertical-scroll-proportion="0.0">
+-          <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
++          <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+           <folding>
+-            <element signature="e#30#58#0" expanded="false" />
++            <element signature="e#30#58#0" expanded="true" />
+           </folding>
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/app/tests.py">
++    <entry file="file://$PROJECT_DIR$/DjangoWebProject1/urls.py">
+       <provider selected="true" editor-type-id="text-editor">
+         <state vertical-scroll-proportion="0.0">
+           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/app/forms.py">
++    <entry file="file://$PROJECT_DIR$/app/templates/app/updateuserinfo.html">
+       <provider selected="true" editor-type-id="text-editor">
+         <state vertical-scroll-proportion="0.0">
+           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+-          <folding />
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/app/__init__.py">
++    <entry file="file://$PROJECT_DIR$/app/views.py">
+       <provider selected="true" editor-type-id="text-editor">
+         <state vertical-scroll-proportion="0.0">
+-          <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
++          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
++          <folding>
++            <element signature="e#29#53#0" expanded="true" />
++          </folding>
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/79774dca-435f-46b5-9d7c-2eb74f29fb03/console.sql">
++    <entry file="file://$PROJECT_DIR$/app/models.py">
+       <provider selected="true" editor-type-id="text-editor">
+         <state vertical-scroll-proportion="0.0">
+           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
++          <folding>
++            <element signature="e#30#58#0" expanded="true" />
++          </folding>
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/app/templates/app/contact.html">
++    <entry file="file://$PROJECT_DIR$/DjangoWebProject1/urls.py">
+       <provider selected="true" editor-type-id="text-editor">
+         <state vertical-scroll-proportion="0.0">
+-          <caret line="9" column="16" selection-start-line="9" selection-start-column="16" selection-end-line="9" selection-end-column="16" />
++          <caret line="22" column="26" selection-start-line="22" selection-start-column="26" selection-end-line="22" selection-end-column="26" />
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/d75b218a-f95c-4b46-825b-57baade125c7/console.sql">
++    <entry file="file://$PROJECT_DIR$/app/views.py">
+       <provider selected="true" editor-type-id="text-editor">
+         <state vertical-scroll-proportion="0.0">
+-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
++          <caret line="259" column="27" selection-start-line="259" selection-start-column="27" selection-end-line="259" selection-end-column="27" />
++          <folding>
++            <element signature="e#29#53#0" expanded="true" />
++          </folding>
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/bf6166c2-6add-4338-9154-f27f75b52ed5/console.sql">
++    <entry file="file://$PROJECT_DIR$/DjangoWebProject1/urls.py">
+       <provider selected="true" editor-type-id="text-editor">
+         <state vertical-scroll-proportion="0.0">
+-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
++          <caret line="22" column="26" selection-start-line="22" selection-start-column="26" selection-end-line="22" selection-end-column="26" />
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/0bdb7960-5eb5-4165-92cd-4c75a06d44d4/console.sql">
++    <entry file="file://$PROJECT_DIR$/app/views.py">
+       <provider selected="true" editor-type-id="text-editor">
+         <state vertical-scroll-proportion="0.0">
+           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
++          <folding>
++            <element signature="e#29#53#0" expanded="true" />
++          </folding>
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/bebe6358-ab3f-4766-beae-95dfeb752985/console.sql">
++    <entry file="file://$PROJECT_DIR$/app/templates/app/layout.html">
+       <provider selected="true" editor-type-id="text-editor">
+         <state vertical-scroll-proportion="0.0">
+-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
++          <caret line="28" column="46" selection-start-line="28" selection-start-column="46" selection-end-line="28" selection-end-column="46" />
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/DjangoWebProject1/settings.py">
++    <entry file="file://$PROJECT_DIR$/DjangoWebProject1/urls.py">
+       <provider selected="true" editor-type-id="text-editor">
+         <state vertical-scroll-proportion="0.0">
+-          <caret line="107" column="62" selection-start-line="107" selection-start-column="62" selection-end-line="107" selection-end-column="62" />
+-          <folding />
++          <caret line="19" column="26" selection-start-line="19" selection-start-column="26" selection-end-line="19" selection-end-column="26" />
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/82258257-67ad-4b30-848f-45e94ef9d150/console.sql">
++    <entry file="file://$PROJECT_DIR$/app/views.py">
+       <provider selected="true" editor-type-id="text-editor">
+         <state vertical-scroll-proportion="0.0">
+           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
++          <folding>
++            <element signature="e#29#53#0" expanded="true" />
++          </folding>
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/f670a1ce-fa0a-4bad-b6b0-81d704516d25/console.sql">
++    <entry file="file://$PROJECT_DIR$/app/templates/app/layout.html">
+       <provider selected="true" editor-type-id="text-editor">
+         <state vertical-scroll-proportion="0.0">
+-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
++          <caret line="28" column="46" selection-start-line="28" selection-start-column="46" selection-end-line="28" selection-end-column="46" />
+         </state>
+       </provider>
+     </entry>
+-<<<<<<< .mine
+-    <entry file="file://$PROJECT_DIR$/app/templates/app/mainsite.html">
++    <entry file="file://$PROJECT_DIR$/DjangoWebProject1/urls.py">
+       <provider selected="true" editor-type-id="text-editor">
+         <state vertical-scroll-proportion="0.0">
+-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
++          <caret line="19" column="26" selection-start-line="19" selection-start-column="26" selection-end-line="19" selection-end-column="26" />
+         </state>
+       </provider>
+     </entry>
+-||||||| .r68
+-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/79774dca-435f-46b5-9d7c-2eb74f29fb03/console.sql">
++    <entry file="file://$PROJECT_DIR$/app/templates/app/updateuserinfo.html">
+       <provider selected="true" editor-type-id="text-editor">
+         <state vertical-scroll-proportion="0.0">
+           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+         </state>
+       </provider>
+     </entry>
+-=======
+->>>>>>> .r79
+-    <entry file="file://$PROJECT_DIR$/app/static/app/content/site.css">
++    <entry file="file://$PROJECT_DIR$/app/templates/app/loginpartial.html">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state vertical-scroll-proportion="0.0">
+-          <caret line="17" column="1" selection-start-line="17" selection-start-column="1" selection-end-line="17" selection-end-column="1" />
+-        </state>
+-      </provider>
+-    </entry>
+-<<<<<<< .mine
+-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/0c02335b-d326-4469-ac45-08fb2f312533/console.sql">
+-      <provider selected="true" editor-type-id="text-editor">
+-        <state vertical-scroll-proportion="0.0">
++        <state vertical-scroll-proportion="-0.0">
+           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/app/templates/app/index.html">
++    <entry file="file://$PROJECT_DIR$/app/templates/app/layout.html">
+       <provider selected="true" editor-type-id="text-editor">
+         <state vertical-scroll-proportion="0.0">
+-          <caret line="13" column="11" selection-start-line="13" selection-start-column="11" selection-end-line="13" selection-end-column="11" />
++          <caret line="26" column="5" selection-start-line="26" selection-start-column="5" selection-end-line="26" selection-end-column="5" />
+           <folding />
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/app/templates/app/registertool.html">
++    <entry file="file://$PROJECT_DIR$/app/templates/app/menupartial.html">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state vertical-scroll-proportion="0.7327044">
+-          <caret line="65" column="18" selection-start-line="54" selection-start-column="18" selection-end-line="65" selection-end-column="18" />
+-          <folding />
+-        </state>
+-      </provider>
+-    </entry>
+-    <entry file="file://$PROJECT_DIR$/app/templates/app/layout.html">
+-      <provider selected="true" editor-type-id="text-editor">
+-        <state vertical-scroll-proportion="0.66487455">
+-          <caret line="46" column="35" selection-start-line="46" selection-start-column="35" selection-end-line="46" selection-end-column="35" />
+-          <folding />
+-        </state>
+-      </provider>
+-    </entry>
+-||||||| .r68
+-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/d75b218a-f95c-4b46-825b-57baade125c7/console.sql">
+-      <provider selected="true" editor-type-id="text-editor">
+         <state vertical-scroll-proportion="0.0">
+           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/bf6166c2-6add-4338-9154-f27f75b52ed5/console.sql">
++    <entry file="file://$PROJECT_DIR$/app/templates/app/toolTable.html">
+       <provider selected="true" editor-type-id="text-editor">
+         <state vertical-scroll-proportion="0.0">
+-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
++          <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="97" selection-end-column="6" />
++          <folding />
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/0bdb7960-5eb5-4165-92cd-4c75a06d44d4/console.sql">
+-      <provider selected="true" editor-type-id="text-editor">
++    <entry file="dbDummy://dbtable:/7991901c/892a6cbe-0a3a-430d-a0b6-dd9dd94bcca7/..app_userprofile">
++      <provider editor-type-id="text-editor">
+         <state vertical-scroll-proportion="0.0">
+           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+         </state>
+       </provider>
+-    </entry>
+-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/bebe6358-ab3f-4766-beae-95dfeb752985/console.sql">
+-      <provider selected="true" editor-type-id="text-editor">
+-        <state vertical-scroll-proportion="0.0">
+-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+-        </state>
+-      </provider>
+-    </entry>
+-=======
+->>>>>>> .r79
+-    <entry file="file://$PROJECT_DIR$/app/templates/app/menupartial.html">
+-      <provider selected="true" editor-type-id="text-editor">
+-        <state vertical-scroll-proportion="0.0952381">
+-          <caret line="2" column="39" selection-start-line="2" selection-start-column="39" selection-end-line="2" selection-end-column="55" />
+-          <folding />
+-        </state>
+-      </provider>
+-    </entry>
+-<<<<<<< .mine
+-    <entry file="dbDummy://dbtable:/7991901c/480a9058-3ad0-4e95-afee-a99fd79bb02f/..app_tool">
+       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+         <state>
+           <filtering enabled="true" />
+-||||||| .r68
+-    <entry file="file://$PROJECT_DIR$/DjangoWebProject1/settings.py">
+-      <provider selected="true" editor-type-id="text-editor">
+-        <state vertical-scroll-proportion="0.0">
+-          <caret line="107" column="62" selection-start-line="107" selection-start-column="62" selection-end-line="107" selection-end-column="62" />
+-          <folding />
+-=======
+-    <entry file="file://$PROJECT_DIR$/DjangoWebProject1/settings.py">
+-      <provider selected="true" editor-type-id="text-editor">
+-        <state vertical-scroll-proportion="0.0">
+-          <caret line="107" column="62" selection-start-line="107" selection-start-column="62" selection-end-line="107" selection-end-column="62" />
+->>>>>>> .r79
+         </state>
+       </provider>
+-<<<<<<< .mine
++    </entry>
++    <entry file="dbDummy://dbtable:/7991901c/892a6cbe-0a3a-430d-a0b6-dd9dd94bcca7/..app_tool">
+       <provider editor-type-id="text-editor">
+         <state vertical-scroll-proportion="0.0">
+           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+         </state>
+       </provider>
+-    </entry>
+-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/480a9058-3ad0-4e95-afee-a99fd79bb02f/console.sql">
+-      <provider selected="true" editor-type-id="text-editor">
+-        <state vertical-scroll-proportion="0.0">
+-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
++      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
++        <state>
++          <filtering enabled="true" />
+         </state>
+       </provider>
+     </entry>
+-||||||| .r68
+-    </entry>
+-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/82258257-67ad-4b30-848f-45e94ef9d150/console.sql">
+-      <provider selected="true" editor-type-id="text-editor">
++    <entry file="dbDummy://dbtable:/7991901c/892a6cbe-0a3a-430d-a0b6-dd9dd94bcca7/..app_borrowrequests">
++      <provider editor-type-id="text-editor">
+         <state vertical-scroll-proportion="0.0">
+           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+         </state>
+       </provider>
+-    </entry>
+-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/f670a1ce-fa0a-4bad-b6b0-81d704516d25/console.sql">
+-      <provider selected="true" editor-type-id="text-editor">
+-        <state vertical-scroll-proportion="0.0">
+-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
++      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
++        <state>
++          <filtering enabled="true" />
+         </state>
+       </provider>
+     </entry>
+-=======
+-    </entry>
+->>>>>>> .r79
+-    <entry file="file://$PROJECT_DIR$/app/templates/app/registershed.html">
+-      <provider selected="true" editor-type-id="text-editor">
+-        <state vertical-scroll-proportion="-9.807693">
+-          <caret line="15" column="39" selection-start-line="15" selection-start-column="39" selection-end-line="15" selection-end-column="39" />
+-          <folding />
+-        </state>
+-      </provider>
+-    </entry>
+-    <entry file="file://$PROJECT_DIR$/app/forms.py">
+-      <provider selected="true" editor-type-id="text-editor">
++    <entry file="dbDummy://dbtable:/7991901c/892a6cbe-0a3a-430d-a0b6-dd9dd94bcca7/..app_shed">
++      <provider editor-type-id="text-editor">
+         <state vertical-scroll-proportion="0.0">
+-          <caret line="86" column="66" selection-start-line="86" selection-start-column="66" selection-end-line="86" selection-end-column="66" />
+-          <folding />
+-        </state>
+-      </provider>
+-    </entry>
+-    <entry file="file://$PROJECT_DIR$/app/tests.py">
+-      <provider selected="true" editor-type-id="text-editor">
+-        <state vertical-scroll-proportion="0.0">
+           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+-          <folding />
+         </state>
+       </provider>
+-    </entry>
+-    <entry file="file://$PROJECT_DIR$/app/models.py">
+-      <provider selected="true" editor-type-id="text-editor">
+-        <state vertical-scroll-proportion="0.0">
+-          <caret line="15" column="58" selection-start-line="15" selection-start-column="58" selection-end-line="15" selection-end-column="58" />
+-          <folding />
+-        </state>
+-      </provider>
+-    </entry>
+-<<<<<<< .mine
+-    <entry file="dbDummy://dbtable:/7991901c/480a9058-3ad0-4e95-afee-a99fd79bb02f/..app_shed">
+       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+         <state>
+           <filtering enabled="true" />
+         </state>
+       </provider>
+-      <provider editor-type-id="text-editor">
+-        <state vertical-scroll-proportion="0.0">
+-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+-          <folding />
+-        </state>
+-      </provider>
+     </entry>
+-||||||| .r68
+-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/0c02335b-d326-4469-ac45-08fb2f312533/console.sql">
++    <entry file="file://$PROJECT_DIR$/app/templates/app/login.html">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state vertical-scroll-proportion="0.0">
+-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
++        <state vertical-scroll-proportion="-15.038462">
++          <caret line="23" column="50" selection-start-line="23" selection-start-column="50" selection-end-line="23" selection-end-column="50" />
++          <folding />
+         </state>
+       </provider>
+     </entry>
+-=======
+->>>>>>> .r79
+-    <entry file="file://$PROJECT_DIR$/app/templates/app/registeruser.html">
++    <entry file="file://$PROJECT_DIR$/app/templates/app/registershed.html">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state vertical-scroll-proportion="-0.0">
+-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
++        <state vertical-scroll-proportion="0.70071685">
++          <caret line="23" column="46" selection-start-line="23" selection-start-column="46" selection-end-line="23" selection-end-column="46" />
+           <folding />
+         </state>
+       </provider>
+     </entry>
+     <entry file="file://$PROJECT_DIR$/DjangoWebProject1/urls.py">
+       <provider selected="true" editor-type-id="text-editor">
+-<<<<<<< .mine
+-        <state vertical-scroll-proportion="0.0">
+-          <caret line="22" column="37" selection-start-line="22" selection-start-column="37" selection-end-line="22" selection-end-column="37" />
+-||||||| .r68
+-        <state vertical-scroll-proportion="-18.307692">
+-          <caret line="28" column="26" selection-start-line="21" selection-start-column="27" selection-end-line="21" selection-end-column="31" />
+-=======
+-        <state vertical-scroll-proportion="0.0">
+-          <caret line="28" column="26" selection-start-line="21" selection-start-column="27" selection-end-line="21" selection-end-column="31" />
+->>>>>>> .r79
++        <state vertical-scroll-proportion="0.37842464">
++          <caret line="38" column="28" selection-start-line="38" selection-start-column="28" selection-end-line="38" selection-end-column="28" />
+           <folding />
+         </state>
+       </provider>
+     </entry>
+-<<<<<<< .mine
+-    <entry file="dbDummy://dbtable:/7991901c/480a9058-3ad0-4e95-afee-a99fd79bb02f/..auth_user">
+-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+-        <state>
+-          <filtering enabled="true" />
++    <entry file="file://C:/Python34/Lib/site-packages/django/db/models/__init__.py">
++      <provider selected="true" editor-type-id="text-editor">
++        <state vertical-scroll-proportion="0.0">
++          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+         </state>
+       </provider>
++    </entry>
++    <entry file="dbDummy://dbtable:/7991901c/892a6cbe-0a3a-430d-a0b6-dd9dd94bcca7/..auth_user">
+       <provider editor-type-id="text-editor">
+         <state vertical-scroll-proportion="0.0">
+           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+-||||||| .r68
+-    <entry file="file://$PROJECT_DIR$/app/templates/app/index.html">
+-      <provider selected="true" editor-type-id="text-editor">
+-        <state vertical-scroll-proportion="-8.5">
+-          <caret line="13" column="11" selection-start-line="13" selection-start-column="11" selection-end-line="13" selection-end-column="11" />
+-=======
+-    <entry file="file://$PROJECT_DIR$/app/templates/app/index.html">
+-      <provider selected="true" editor-type-id="text-editor">
+-        <state vertical-scroll-proportion="0.0">
+-          <caret line="13" column="11" selection-start-line="13" selection-start-column="11" selection-end-line="13" selection-end-column="11" />
+->>>>>>> .r79
+           <folding />
+         </state>
+       </provider>
+-    </entry>
+-<<<<<<< .mine
+-    <entry file="dbDummy://dbtable:/7991901c/480a9058-3ad0-4e95-afee-a99fd79bb02f/..app_userprofile">
+       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+         <state>
+           <filtering enabled="true" />
+-||||||| .r68
+-    <entry file="file://$PROJECT_DIR$/app/templates/app/registershed.html">
+-      <provider selected="true" editor-type-id="text-editor">
+-        <state vertical-scroll-proportion="-1.9615384">
+-          <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+-          <folding />
+-=======
+-    <entry file="file://$PROJECT_DIR$/app/templates/app/registershed.html">
+-      <provider selected="true" editor-type-id="text-editor">
+-        <state vertical-scroll-proportion="0.0">
+-          <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+-          <folding />
+->>>>>>> .r79
+         </state>
+       </provider>
+-<<<<<<< .mine
+-      <provider editor-type-id="text-editor">
+-||||||| .r68
+     </entry>
+     <entry file="file://$PROJECT_DIR$/app/views.py">
+       <provider selected="true" editor-type-id="text-editor">
+-=======
+-    </entry>
+-    <entry file="file://$PROJECT_DIR$/app/templates/app/loginpartial.html">
+-      <provider selected="true" editor-type-id="text-editor">
+->>>>>>> .r79
+         <state vertical-scroll-proportion="0.0">
+-<<<<<<< .mine
+-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+-          <folding />
+-        </state>
+-      </provider>
+-    </entry>
+-    <entry file="file://$PROJECT_DIR$/app/templates/app/login.html">
+-      <provider selected="true" editor-type-id="text-editor">
+-        <state vertical-scroll-proportion="-5.230769">
+-          <caret line="8" column="27" selection-start-line="8" selection-start-column="27" selection-end-line="8" selection-end-column="27" />
+-||||||| .r68
+-          <caret line="125" column="51" selection-start-line="125" selection-start-column="51" selection-end-line="125" selection-end-column="51" />
++          <caret line="199" column="13" selection-start-line="199" selection-start-column="13" selection-end-line="199" selection-end-column="13" />
+           <folding>
+-            <element signature="e#30#59#0" expanded="true" />
++            <element signature="e#29#53#0" expanded="true" />
+           </folding>
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/app/templates/app/loginpartial.html">
++    <entry file="file://$PROJECT_DIR$/app/static/app/content/site.css">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state vertical-scroll-proportion="-3.2692308">
+-          <caret line="5" column="7" selection-start-line="5" selection-start-column="7" selection-end-line="5" selection-end-column="7" />
+-=======
+-          <caret line="5" column="7" selection-start-line="5" selection-start-column="7" selection-end-line="5" selection-end-column="7" />
+->>>>>>> .r79
++        <state vertical-scroll-proportion="0.0">
++          <caret line="61" column="20" selection-start-line="61" selection-start-column="20" selection-end-line="61" selection-end-column="20" />
+           <folding />
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/app/templates/app/loginpartial.html">
++    <entry file="file://$PROJECT_DIR$/app/templates/app/index.html">
+       <provider selected="true" editor-type-id="text-editor">
+-<<<<<<< .mine
+-        <state vertical-scroll-proportion="-4.576923">
+-          <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+-||||||| .r68
+-        <state vertical-scroll-proportion="-1.3076923">
+-          <caret line="2" column="39" selection-start-line="2" selection-start-column="39" selection-end-line="2" selection-end-column="55" />
+-=======
+         <state vertical-scroll-proportion="0.0">
+-          <caret line="2" column="39" selection-start-line="2" selection-start-column="39" selection-end-line="2" selection-end-column="55" />
+->>>>>>> .r79
++          <caret line="104" column="47" selection-start-line="104" selection-start-column="45" selection-end-line="104" selection-end-column="47" />
+           <folding />
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/app/views.py">
++    <entry file="file://$PROJECT_DIR$/app/templates/app/registeruser.html">
+       <provider selected="true" editor-type-id="text-editor">
+-<<<<<<< .mine
+-        <state vertical-scroll-proportion="0.6077922">
+-          <caret line="111" column="126" selection-start-line="111" selection-start-column="126" selection-end-line="111" selection-end-column="126" />
+-          <folding>
+-            <element signature="e#30#59#0" expanded="true" />
+-          </folding>
+-||||||| .r68
+-        <state vertical-scroll-proportion="1.7520891">
+-          <caret line="40" column="15" selection-start-line="40" selection-start-column="15" selection-end-line="40" selection-end-column="15" />
++        <state vertical-scroll-proportion="-7.1923075">
++          <caret line="70" column="54" selection-start-line="70" selection-start-column="54" selection-end-line="70" selection-end-column="54" />
+           <folding />
+-=======
+-        <state vertical-scroll-proportion="-25.0">
+-          <caret line="40" column="15" selection-start-line="40" selection-start-column="15" selection-end-line="40" selection-end-column="15" />
+-          <folding />
+->>>>>>> .r79
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/app/views.py">
++    <entry file="file://$PROJECT_DIR$/app/templates/app/registertool.html">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state vertical-scroll-proportion="-14.074074">
+-          <caret line="138" column="30" selection-start-line="138" selection-start-column="30" selection-end-line="138" selection-end-column="30" />
+-          <folding>
+-            <element signature="e#30#59#0" expanded="true" />
+-          </folding>
++        <state vertical-scroll-proportion="5.8846154">
++          <caret line="39" column="0" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
++          <folding />
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/app/templates/app/registertool.html">
++    <entry file="file://$PROJECT_DIR$/app/forms.py">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state vertical-scroll-proportion="-7.5">
+-          <caret line="12" column="16" selection-start-line="12" selection-start-column="16" selection-end-line="13" selection-end-column="21" />
+-          <folding />
++        <state vertical-scroll-proportion="0.0">
++          <caret line="157" column="13" selection-start-line="156" selection-start-column="0" selection-end-line="159" selection-end-column="7" />
++          <folding>
++            <element signature="e#30#45#0" expanded="true" />
++          </folding>
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/app/templates/app/toolTable.html">
++    <entry file="file://$PROJECT_DIR$/app/models.py">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state vertical-scroll-proportion="0.43338683">
+-          <caret line="18" column="20" selection-start-line="18" selection-start-column="20" selection-end-line="18" selection-end-column="20" />
+-          <folding />
++        <state vertical-scroll-proportion="0.9420655">
++          <caret line="80" column="13" selection-start-line="80" selection-start-column="13" selection-end-line="80" selection-end-column="13" />
++          <folding>
++            <element signature="e#30#58#0" expanded="true" />
++          </folding>
+         </state>
+       </provider>
+     </entry>
+\ No newline at end of file
+Index: DjangoWebProject1/urls.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>windows-1252
+===================================================================
+--- DjangoWebProject1/urls.py	(revision 123)
++++ DjangoWebProject1/urls.py	(revision )
+@@ -32,15 +32,14 @@
+ 
+     url(r'^register/$', views.register, name='register'),
+     url(r'^registerUser/$', views.registerUser, name='registerUser'),
++    url(r'^registerUser/(?P<zipcode>[0-9]{1,5})/$', views.register_shed, name='registershed'),
+     url(r'^registerTool/$', views.registerTool, name='registerTool'),
+     url(r'^displayTools/$', views.displayTools, name='displayTools'),
+     url(r'^registerShed/$', views.register_shed, name='registershed'),
+-    url(r'^registerUser/(?P<zipcode>[0-9]{1,5})/$', views.register_shed, name='registershed'),
+     url(r'^registerTool/(?P<id>[0-9]+)/$', views.updateTool, name='updateTool'),
+ 
+ 
+     url(r'^displayShedTools/$', views.displayShedTools, name='displayShedTools'),
+-
+     url(r'^displayShedTools/(?P<id>[0-9]+)/$', views.onBorrowToolRequest, name='onBorrowToolRequest'),
+     url(r'^displayTools/(?P<toolid>[0-9]+)/$', views.onAcceptToolRequest, name='onAcceptToolRequest'),
+ 
+Index: app/templates/app/layout.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/templates/app/layout.html	(revision 123)
++++ app/templates/app/layout.html	(revision )
+@@ -25,17 +25,14 @@
+ {
+     FB.login(function(response)
+     {
+-
+         if (response.authResponse)
+         {
+-
+             // Post message to your wall
+             if(document.getElementById('fb_message').value==='Dan is cool')
+             {
+                 var opts = {
+                 message : "Social component is active and running."
+             };
+-
+             FB.api('/me/feed', 'post', opts, function(response)
+             {
+                 if (!response || response.error)
+@@ -47,13 +44,11 @@
+                     alert('Success - Post ID: ' + response.id);
+                 }
+             });
+-
+             }
+             else
+             {
+                 alert('The keyword does not match')
+             }
+-
+         }
+         else
+         {
+@@ -68,9 +63,6 @@
+      js.src = "//connect.facebook.net/en_US/sdk.js";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+-
+-
+-
+ </script>
+ 
+ <div id="fb-root">
+@@ -99,11 +91,10 @@
+  </div>
+ 
+  <div class="container body-content">
+-{% block content %}{% endblock %}
+-        {% block jumbo %}{% endblock %}
++    {% block content %}{% endblock %}
++    {% block jumbo %}{% endblock %}
+-        <hr/>
+-
+  </div>
++ <hr/>
+ <footer>
+ 	<p style="margin-left:2%;">&copy; {{ year }} - All rights reserved to Tool Share, Rochester</p>
+ </footer>

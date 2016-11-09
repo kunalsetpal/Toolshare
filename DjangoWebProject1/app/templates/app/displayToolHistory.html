@@ -1,0 +1,36 @@
+{% extends "app/layout.html" %}
+{% block content %}
+<div class="container"  id="registerdtools_form">
+    <div class="row" style="padding:10px">
+        <h2>{{ title }}</h2>
+        <section id="registeredToolForm">
+            <form action="/registerTool/" method="post" class="form-horizontal">
+                {% csrf_token %}
+                <h2>Tool History: {{ toolname }}</h2>
+                <br/>
+                <p><a href="{% url 'registeredTools' %}">< Back to all registered tools</a></p>
+                <br/>
+                <table class="table table-striped">
+                        <tr>
+                            <th>Date Borrowed</th>
+                            <th>Date for Return</th>
+                            <th>Borrower ID</th>
+                            <th>Condition</th>
+                        </tr>
+                        {%  for h in history %}
+                            {%  if h.transaction_type == 'Borrowed' %}
+                        <tr>
+                            <td>{{ h.transaction_date }}</td>
+                            <td>{{ h.return_date }}</td>
+                            <td>{{ h.borrower_id }}</td>
+                            <td>{{ h.condition }}</td>
+                        </tr>
+                            {% endif %}
+                        {% endfor %}
+                    </table>
+            </form>
+        </section>
+    </div>
+</div>
+
+{% endblock %}

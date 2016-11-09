@@ -1,0 +1,44 @@
+{% extends "app/layout.html" %}
+{% block content %}
+<div class="container"  id="registerdtools_form">
+    <div class="row" style="padding:10px">
+        <h2>{{ title }}</h2>
+        <section id="registeredToolForm">
+            <form action="/registerTool/" method="post" class="form-horizontal">
+                {% csrf_token %}
+                <h2>Sharezone Tools</h2>
+                <br/>
+                <table class="table table-striped">
+                        <tr>
+                            <th>Owner</th>
+                            <th>Tool ID</th>
+                            <th>Tool Name</th>
+                            <th>Image</th>
+                            <th>Category</th>
+                            <th>Location</th>
+                            <th>Status</th>
+                            <th>Borrower</th>
+                            <th>Action</th>
+                            <th>Return Date</th>
+                        </tr>
+                        {% for b,r in shed_tools %}
+                        <tr>
+                            <td>{{ b.tool_owner_id }}</td>
+                            <td>{{ b.id }}</td>
+                            <td>{{ b.tool_name }}</td>
+                            <td><img src="{{ b.image.url }}" width="100" height="100"/></td>
+                            <td>{{ b.category }}</td>
+                            <td>{{ b.location }}</td>
+                            <td> {% if b.is_borrowed %} Borrowed {% else %} Not borrowed{% endif %}</td>
+                            <td>{{ r.borrower_id }}</td>
+                            <td> {% ifequal b.location "Shed" %} {% if b.is_borrowed %}{% if r.is_set_for_return %} <a     href="{% url 'onApproveReturn' b.id %}" class="btn btn-info btn-block" > Approve Return </a>{% else%}No return request{% endif %}{% endif %}{% endifequal %}</td>
+                            <td>{{ r.return_date }}</td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+            </form>
+        </section>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends "app/layout.html" %}
+{% block content %}
+<div class="container"  id="registerdtools_form">
+    <div class="row" style="padding:10px">
+        <h2>{{ title }}</h2>
+        <section id="registeredToolForm">
+        <h2>Borrowed Tools</h2>
+        <br/>
+        {% if borrowedTools %}
+            {% for c in borrowedTools %}
+            <div class="col-md-12 img-thumbnail"
+                    {% for n in user_notifications %}
+                        {% ifequal n.tool_name  c.tool %}
+                            style="border:lightblue solid;margin:5px 0;"
+                        {% endifequal %}
+                    {% endfor %}
+                    >
+                <div class="col-sm-4 registered-tools">
+                    <img src="{{ c.tool.image.url }}" />
+                </div>
+                <div class="col-md-4">
+                    <p>Tool name:{{ c.tool.tool_name }}</p>
+                    <p>Location:{{ c.tool.location }}</p>
+                    <p>Condition:{{ c.tool.condition }}</p>
+                    <p>Category:{{ c.tool.category }}</p>
+                </div>
+                <div class="col-md-4">
+
+
+                    <p>Owner's username:{{ c.owner_id.username }}</p>
+                    <p>Owner's email:{{ c.owner_id.email }}</p>
+                    <p>Date of return:{{ c.return_date }}</p>
+                    {% url 'onReturnToolRequest' c.tool.id as to_url %}
+                    <a href="{{to_url}}" class="btn btn-primary btn-sm btn-block">Return Tool</a>
+
+                </div>
+            </div>
+            {% endfor %}
+        {% else  %}
+             <p> Currently, you have not borrowed any tools. </p>
+
+        {% endif %}
+       </section>
+    </div>
+</div>
+{% endblock %}

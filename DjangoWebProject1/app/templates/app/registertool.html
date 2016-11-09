@@ -1,0 +1,83 @@
+{% extends "app/layout.html" %}
+{% block content %}
+<div class="row"  id="registertool_form">
+    <div class="col-md-8" >
+        <h2>{{ title }}</h2>
+        <section id="toolRegistrationForm">
+            <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
+                {% csrf_token %}
+                <br/>
+                <div class="form-group">
+                    <label for="tool_name" class="col-md-2 control-label">Tool Name</label>
+                    <div class="col-md-10">
+                        {{ form.tool_name }}
+                        {{ form.tool_name.errors }}
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="status" class="col-md-2 control-label">Tool Status</label>
+                    <div class="col-md-10 radio-button">
+                        {{ form.status }}
+                        {{ form.status.errors }}
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="status" class="col-md-2 control-label">Location</label>
+                    <div class="col-md-10 radio-button">
+                        {{ form.location }}
+                        {{ form.location.errors }}
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="category" class="col-md-2 control-label">Category</label>
+                    <div class="col-md-10 radio-button">
+                        {{ form.category }}
+                        {{ form.category.errors }}
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="condition" class="col-md-2 control-label">Condition</label>
+                    <div class="col-md-10 radio-button">
+                        {{ form.condition }}
+                        {{ form.condition.errors }}
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="special_instruction" class="col-md-2 control-label">Special Instructions</label>
+                    <div class="col-md-10">
+                        {{ form.special_instruction }}
+                        {{ form.special_instruction.errors }}
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="image" type="file" class="col-md-2 control-label">Image</label>
+                    <div class="col-md-10">
+                        {{ form.image }}
+                        {{ form.image.errors }}
+                    </div>
+                </div>
+
+                  <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value={{ act }} class=" btn btn-success" />
+                    </div>
+                  </div>
+                {% if form.errors %}
+                <p class="validation-summary-errors">Please fill correctly the necessary fields.</p>
+                {% endif %}
+            </form>
+        </section>
+    </div>
+    <div class="col-md-5">
+        <section id="socialLoginForm"></section>
+    </div>
+</div>
+
+{% endblock %}

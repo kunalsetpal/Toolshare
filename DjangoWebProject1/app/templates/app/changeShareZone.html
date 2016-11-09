@@ -1,0 +1,59 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+
+    <h2>Update Share Zone</h2>
+    <h3>Your current zipcode is : {{ zipcode }}</h3>
+    <br />
+
+    {% if hasBorrowed == False and hasLent == False and has_admin == True %}
+
+         <form action="" method="post" class="form-vertical"> {% csrf_token %}
+
+            <div class="form-group">
+                <label for="zipcode" class="col-md-2 control-label">Enter your new Zipcode here</label>
+                    <div class="col-md-10">
+                        {{ form.zipcode }}
+                        {{ form.zipcode.errors }}
+                    </div>
+            </div>
+
+            <div class="form-group">
+                 <div class="col-md-offset-2 col-md-10">
+                     <br />
+                      <input type="submit" value="Change Zip" class="btn btn-success" />
+                 </div>
+            </div>
+
+        </form>
+
+    {% else %}
+
+        {% if hasBorrowed == True %}
+            <h4>
+                You have borrowed tools. Kindly return them.<br/>
+                You can change the share-zone(zipcode)only when you have returned all tools
+            </h4>
+        {% endif %}
+
+        {% if hasLent == True %}
+            <h4>
+                You have lent tools and awaiting return.<br/>
+                You can change the share-zone(zipcode)only when your tools have been returned.<br/>
+                A request has been sent to all borrowers.<br/>
+            </h4>
+        {% endif %}
+
+        {% if has_admin == False %}
+            <h4>
+                <br/>
+                    You are admin. You need to appoint an admin from the existing user.
+                <br/><br/>
+                <a href="{% url  'displayShedUsers'%}">Click Here to appoint an admin</a>
+            </h4>
+        {% endif %}
+
+
+    {% endif %}
+
+{% endblock %}

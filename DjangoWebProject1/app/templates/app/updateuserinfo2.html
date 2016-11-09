@@ -1,0 +1,173 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+
+    <h2>Update User Information</h2>
+    <br />
+    <h4>
+        Hello {{ first_name}}{{ last_name }}. Your username is {{ user.username }}<br />
+
+        <br />
+    </h4>
+    <p>To update the details kindly click on the update buttons.</p><br />
+
+
+
+    <table class="table">
+        <tr>
+            <td>Name: <b>{{first_name }} {{last_name }}</b> </td>
+            {% if form_update == False %}
+            <td> <a href ="{% url 'updatedetails' update_name %}" class="btn btn btn-primary" role="button">  Update Name  </a> </td>
+            {% endif %}
+        </tr>
+
+        {% if form_name == True %}
+            <tr><td>
+
+                 <form action="" method="post" class="form-vertical"> {% csrf_token %}
+                    <div class="form-group">
+                        <label for="first_name" class="col-md-2 control-label">First Name</label>
+                            <div class="col-md-10">
+                                {{ form.first_name }}
+                                {{ form.first_name.errors }}
+                            </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="last_name" class="col-md-2 control-label">Last Name</label>
+                            <div class="col-md-10">
+                                {{ form.last_name }}
+                                {{ form.last_name.errors }}
+                            </div>
+                    </div>
+                    <div class="form-group">
+                         <div class="col-md-offset-2 col-md-10">
+                             <br />
+                              <input type="submit" value="Update" class="btn btn-success" />
+                         </div>
+                    </div>
+                </form>
+            </td></tr>
+        {% endif %}
+
+
+        <tr>
+            <td>Email: <b>{{email}}</b> </td>
+            <td>
+                {% if form_update == False %}
+                <a href ="{% url 'updatedetails' update_email %}" class="btn btn btn-primary" role="button">  Update Email  </a>
+                {% endif %}
+            </td>
+        </tr>
+
+        {% if form_email == True %}
+            <tr><td>
+                 <form action="" method="post" class="form-vertical"> {% csrf_token %}
+                     <div class="form-group">
+                        <label for="email" class="col-md-2 control-label">Email</label>
+                        <div class="col-md-10">
+                                {{ form.email }}
+                                {{ form.email.errors }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                         <div class="col-md-offset-2 col-md-10">
+                             <br />
+                              <input type="submit" value="Update" class="btn btn-success" />
+                         </div>
+                    </div>
+                 </form>
+            </td></tr>
+        {% endif %}
+        <tr>
+            <td>Address: <b>{{address}}</b> </td>
+            <td>
+                {% if form_update == False %}
+                <a href ="{% url 'updatedetails' update_address %}" class="btn btn btn-primary" role="button"> Update Address</a>
+                {% endif %}
+            </td>
+        </tr>
+       {% if form_address == True %}
+            <tr><td>
+
+                 <form action="" method="post" class="form-vertical"> {% csrf_token %}
+                     <div class="form-group">
+                        <label for="address" class="col-md-2 control-label">Address</label>
+                        <div class="col-md-10">
+                                {{ form.address }}
+                                {{ form.address.errors }}
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                         <div class="col-md-offset-2 col-md-10">
+                             <br />
+                              <input type="submit" value="Update" class="btn btn-success" />
+                         </div>
+                    </div>
+                 </form>
+            </td></tr>
+       {% endif %}
+
+        <tr>
+            <td>Gender: <b>{{gender}}</b>  </td>
+            <td>
+                {% if form_update == False %}
+                <a href ="{% url 'updatedetails' update_gender %}" class="btn btn btn-primary" role="button"> Update Gender</a>
+                {% endif %}
+            </td>
+        </tr>
+        {% if form_gender == True %}
+            <tr><td>
+
+                 <form action="" method="post" class="form-vertical"> {% csrf_token %}
+                     <div class="form-group">
+                        <label for="gender" class="col-md-2 control-label">Gender</label>
+                        <div class="col-md-10">
+                                {{ form.gender }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                         <div class="col-md-offset-2 col-md-10">
+                             <br />
+                              <input type="submit" value="Update" class="btn btn-success" />
+                         </div>
+                    </div>
+                 </form>
+            </td></tr>
+        {% endif %}
+        <tr>
+            <td>
+                Zipcode/Share Zone: <b>{{ zipcode }}</b>
+            </td>
+            <td>
+                {% if form_update == False %}
+                {% url 'changeShareZone' as to_url %}
+                <a class="btn btn btn-primary" role="button" onclick="changeSharezonePopup()" href = "{{to_url}}">Change Share Zone</a>
+                {% endif %}
+            </td>
+        </tr>
+        {% if form_update == False %}
+        <tr>
+            <td>
+                Click here to change your password
+            </td>
+            <td>
+
+                {% url 'updatePwd' as to_url %}
+                <a class="btn btn btn-primary" role="button" href = "{{to_url}}">Change Password</a>
+
+            </td>
+        </tr>
+        {% endif %}
+    </table>
+ <script language="JavaScript" type="text/javascript">
+
+ function changeSharezonePopup()
+ {
+     alert("On changing the zipcode you will move out of the sharezone.");
+ }
+
+
+
+ </script>
+{% endblock %}

@@ -1,0 +1,47 @@
+{% if user.is_authenticated %}
+<form id="logoutForm" action="/logout" method="post" class="navbar-right">
+    {% csrf_token %}
+    <ul class="nav navbar-nav navbar-right">
+        <li><span class="navbar-brand">  </span></li>
+        <li><a href="{% url 'updateUserInfo' %}" class="btn "><span class="glyphicon glyphicon-user"></span>Profile</a></li>
+        <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+    </ul>
+</form>
+     <ul class="nav navbar-nav navbar-right notification-ul" >
+            <div class="btn-group show-on-hover">
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" style="background-color:transparent; border:0; padding: 15px 0px 0px">
+                    <a href="#" style="color:darkgrey"><span class="badge">{{ notifications_shown}}</span></a>
+                    <span class="caret"></span> 
+                </button>
+                <ul class="dropdown-menu" role="menu">  
+                        {% if br %}
+                            <li><a href="{% url 'borrowRequests' %}">You have {{ br }} new borrow requests.  </a></li>
+                        {% endif %}
+                        {% if rr %}
+                            <li><a href="{% url 'borrowedTools' %}">{{ rr }} rejected borrow tool requests.  </a></li>
+                        {% endif %}
+                        {% if ar %}
+                            <li><a href="{% url 'borrowedTools' %}">{{ ar }} accepted borrow tool requests.  </a></li>
+                        {% endif %}
+                        {% if vr %}
+                            <li><a href="{% url 'borrowedTools' %}">{{ vr }} verifications of tool return.  </a></li>
+                        {% endif %}
+                        {% if tr %}
+                            <li><a href="{% url 'lentTools' %}">{{ tr }} tool return requests.  </a></li>
+                        {% endif %}
+                         {% if cvr %}
+                            <li><a href="{% url 'displayShedTools' %}">SHED:{{ cvr }}  verifications of tool return  </a></li>
+                        {% endif %}
+                        {% if nc %}
+                            <li><a href="{% url 'displayShedUsers' %}">You have been appointed as new coordinator. </a></li>
+                        {% endif %}
+                </ul>
+            </div>
+        </ul>
+{% else %}
+
+<ul class="nav navbar-nav navbar-right">
+    <li><a href="{% url 'login' %}">Log in</a></li>
+</ul>
+
+{% endif %}

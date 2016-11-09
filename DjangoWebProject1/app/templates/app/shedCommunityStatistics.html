@@ -1,0 +1,70 @@
+{% extends "app/layout.html" %}
+{% block content %}
+<div class="container"  id="registerdtools_form">
+    <div class="row" style="padding:10px">
+        <br/>
+        <h2>Community Statistics</h2><br/>
+        <ul class="nav nav-tabs">
+        <li class="active"><a href="{% url 'displayShedStatistics' %}">Overview</a></li>
+        <li><a href="{% url 'displayShedStatisticsCat' %}">By Tool Category</a></li>
+        </ul>
+    </div>
+</div>
+
+<div class="container"  id="registerdtools_form">
+    <div class="row" style="padding:10px">
+        <section id="registeredToolForm">
+            <form action="/registerTool/" method="post" class="form-horizontal">
+                {% csrf_token %}
+                <h3>Sharezone Overview</h3>
+                <p>Total sharezone tools with active status: {{ activect }}<br/>
+                Most tools owned by:
+                    {% if hiOwner|length >= 1 %}
+                        {% for o in hiOwner %}
+                            {{ o }},
+                        {% endfor %}
+                        with {{ hiToolCt }} tools<br/>
+                    {% else %}
+                        <i>No Sharezone users have tools to share.</i>
+                    {% endif %}
+
+                Number of completed lending transactions:<br/>
+                    <li>this week: {{ weekBorrowed }}</li>
+                    <li>this month: {{ monthBorrowed }}</li>
+                    <li>last month: {{ lastMonthBorrowed }}</li>
+                </p>
+
+                <br/>
+                <h4>Home location</h4>
+                 <table class="table table-striped" style="width: 50%; text-align: center">
+                        <tr>
+                            <th>Total tools</th>
+                            <th>Number Currently Borrowed</th>
+                            <th>Number Awaiting Return</th>
+                        </tr>
+                        <tr>
+                            <td>{{ homect }}</td>
+                            <td>{{ homeBorrowedct }}</td>
+                            <td>{{ homeReturnct }}</td>
+                        </tr>
+                    </table>
+                <h4>Shed location</h4>
+                <table class="table table-striped" style="width: 50%; text-align: center">
+                        <tr>
+                            <th>Total tools</th>
+                            <th>Number Currently Borrowed</th>
+                            <th>Number Awaiting Return</th>
+                        </tr>
+                        <tr>
+                            <td>{{ shedct }}</td>
+                            <td>{{ borrowedct }}</td>
+                            <td>{{ returnct }}</td>
+                        </tr>
+                    </table>
+            </form>
+        </section>
+    </div>
+</div>
+
+
+{% endblock %}

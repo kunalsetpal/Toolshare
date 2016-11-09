@@ -1,0 +1,46 @@
+{% extends "app/layout.html" %}
+{% block content %}
+<div class="container"  id="registerdtools_form">
+    <div class="row" style="padding:10px" >
+        <h2>{{ title }}</h2>
+        <section id="registeredToolForm">
+            <h2>Borrow Requests</h2>
+            <br/>
+                    {% if requestedTools %}
+                            {% for c in requestedTools %}
+                                <div class="col-md-12 img-thumbnail"
+                               {% for n in user_notifications %}
+                                {% ifequal n.tool_name  c.tool %}
+                                    style="border:lightblue solid;margin:5px 0;"
+                                {% endifequal %}
+                                   role={{ n.tool_name.tool_name }}{{ c.tool.tool_name }}
+                                {% endfor %}
+                                >
+                                    <div class="col-md-4 tool-image">
+                                        <img src="{{ c.tool.image.url }}" />
+                                    </div>
+                                    <div class="col-md-4">
+                                        <p>Tool name:{{ c.tool.tool_name }}</p>
+                                        <p>Location:{{ c.tool.location }}</p>
+                                        <p>Condition:{{ c.tool.condition }}</p>
+                                        <p >Borrower's message<br /><span style="font-size:0.8em;">{{ c.borrower_message }}</span></p>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <p>Owner's username:{{ c.owner_id.username }}</p>
+                                        <p>Owner's email:{{ c.owner_id.email }}</p>
+                                        <p>Date of return:{{ c.return_date }}</p>
+                                        <p>{% url 'onAcceptToolRequest' c.tool.id as to_url %}<a class="btn btn-info btn-lg"href={{to_url}}> <span class="glyphicon glyphicon-ok"></span>  Accept</a>
+                                            {% url 'onRejectToolRequest' c.tool.id as to_url %}<a class="btn btn-danger btn-lg" href={{to_url}}><span class="glyphicon glyphicon-remove"></span> Reject</a> </p>
+                                            {% ifequal notification.tool_name.id  c.tool.id %}
+                                                <h3>New</h3>
+                                            {% endifequal %}
+                                    </div>
+                                </div>
+                            {% endfor %}
+                    {% else %}
+                        <p> Currently you have no borrow requests </p>
+                    {% endif %}
+       </section>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,76 @@
+{% extends "app/layout.html" %}
+{% block content %}
+<div class="container"  id="registerdtools_form">
+    <div class="row" style="padding:10px">
+        <br/>
+        <h2>Community Statistics</h2><br/>
+        <ul class="nav nav-tabs">
+        <li><a href="{% url 'displayShedStatistics' %}">Overview</a></li>
+        <li class="active"><a href="{% url 'displayShedStatisticsCat' %}">By Tool Category</a></li>
+        </ul>
+    </div>
+</div>
+<div class="container"  id="registerdtools_form">
+    <br/>
+    <h4>Total by Tool Category</h4><br/>
+        <table class="table table-striped" style="text-align: center; width:60%">
+          <thead>
+            <tr>
+              <th>Category</th>
+              <th>Total</th>
+              <th>Total as Active</th>
+              <th>Currently Borrowed</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Common Use</th>
+              <td>{{ ctotal }}</td>
+              <td>{{ active_ctotal }}</td>
+              <td>{{ borrow_ctotal }}</td>
+            </tr>
+            <tr>
+              <th scope="row">Gardening</th>
+              <td>{{ gtotal }}</td>
+              <td>{{ active_gtotal }}</td>
+              <td>{{ borrow_gtotal }}</td>
+            </tr>
+            <tr>
+              <th scope="row">Wood working</th>
+              <td>{{ wtotal }}</td>
+              <td>{{ active_wtotal }}</td>
+              <td>{{ borrow_wtotal }}</td>
+            </tr>
+            <tr>
+              <th scope="row">Metal working</th>
+              <td>{{ mtotal }}</td>
+              <td>{{ active_mtotal }}</td>
+              <td>{{ borrow_mtotal }}</td>
+            </tr>
+            <tr>
+              <th scope="row">Cleaning</th>
+              <td>{{ cltotal }}</td>
+              <td>{{ active_cltotal }}</td>
+              <td>{{ borrow_cltotal }}</td>
+            </tr>
+            <tr>
+              <th scope="row">Kitchen</th>
+              <td>{{ ktotal }}</td>
+              <td>{{ active_ktotal }}</td>
+              <td>{{ borrow_ktotal }}</td>
+            </tr>
+            <tr>
+              <th scope="row">Other</th>
+              <td>{{ ototal }}</td>
+              <td>{{ active_ototal }}</td>
+              <td>{{ borrow_ototal }}</td>
+            </tr>
+          </tbody>
+    </table>
+            </form>
+        </section>
+    </div>
+</div>
+
+
+{% endblock %}

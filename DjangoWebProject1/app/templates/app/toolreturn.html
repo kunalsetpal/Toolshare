@@ -1,0 +1,40 @@
+{% extends "app/layout.html" %}
+{% block content %}
+    <div class="col-md-5 tool-image">
+        <h2 style="text-transform:none; text-align:left;width:100% font-size:1.3em; padding:10px;" >{{ tool.tool_name}}</h2>
+        <img class=" img-responsive" src="{{ tool.image.url }}" alt="tool" style="min-height:200px;">
+        <p class="tool-page-line"> Category: {{ tool.category }} </p>
+        <p class="tool-page-line"> Owner: {{ tool_owner.username }} </p>
+        <p class="tool-page-line"> Original Condition: {{ tool.condition }} </p>
+    </div>
+    <div class="col-md-7 tool-page" >
+        <form action=" " method="post" class="form-horizontal">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="first_name" class="col-md-2 control-label">Leave a message:<br />(optional)</label>
+                    <div class="col-xs-10">
+                        {{ form.message }}
+                        {{ form.message.errors }}
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="condition" class="col-md-2 control-label">Current Tool Condition</label>
+                    <div class="col-md-10 radio-button">
+                        {{ form.condition }}
+                        {{ form.condition.errors }}
+                    </div>
+                </div>
+
+                <br />
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="hidden" name="next" value="/" />
+                        <input type="submit" value="Approve Return" class="btn btn-info" />
+                    </div>
+                </div>
+         </form>
+    </div>
+{% endblock %}
+

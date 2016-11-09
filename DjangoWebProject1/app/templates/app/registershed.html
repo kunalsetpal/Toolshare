@@ -1,0 +1,45 @@
+{% extends "app/layout.html" %}
+{% block content %}
+    {% if actn == 'updatesharezone' %}
+        <h1 style="text-align:center; margin-top:10%"> You are the first user in this ShareZone and as a result you will be the first coordinator.</h1>
+    {% elif actn == 'new_registration' %}
+        <h1 style="text-align:center; margin-top:10%"> You're almost done with the registration. You are the first user in this ShareZone and as a result you will be the first coordinator.</h1>
+    {% endif %}
+
+<h2> Please take a moment to fill out the shed creation form under zipcode {{ zipcode }} {{ actn }}.</h2>
+<div class="row"  id="registertool_form">
+    <div class="col-md-8" >
+        <h2>{{ title }}</h2>
+        <section id="toolRegistrationForm">
+
+            <form action="{%  url 'registershed' zipcode actn %}" method="post" class="form-horizontal">
+                {% csrf_token %}
+                <hr />
+
+                <div class="form-group">
+                    <label for="shed_name" class="col-md-2 control-label">Shed name</label>
+                    <div class="col-md-10">
+                        {{ form.name }}
+                        {{ form.name.errors }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="shed_address" class="col-md-2 control-label">Shed address</label>
+                    <div class="col-md-10">
+                        {{ form.address }}
+                        {{ form.address.errors }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Create Shed" class="btn btn-success" />
+                    </div>
+                </div>
+                {% if form.errors %}
+                <p class="validation-summary-errors">Please fill correctly the necessary fields.</p>
+                {% endif %}
+            </form>
+        </section>
+    </div>
+</div>
+{% endblock %}

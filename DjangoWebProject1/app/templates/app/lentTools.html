@@ -1,0 +1,44 @@
+{% extends "app/layout.html" %}
+{% block content %}
+<div class="container"  id="registerdtools_form">
+    <div class="row" style="padding:10px">
+        <h2>{{ title }}</h2>
+        <section id="registeredToolForm">
+        <h2>Lent Tools</h2>
+        <br/>
+        {% if lentTools %}
+            {% for b,r in zipped_data %}
+                <div class="col-md-12 img-thumbnail"
+                   {% for n in user_notifications %}
+                        {% ifequal n.tool_name  b %}
+                            style="border:lightblue solid;margin:5px 0;"
+                        {% endifequal %}
+                    {% endfor %}
+                    >
+                <div class="col-md-4 registered-tools">
+                    <img src="{{ b.image.url }}" />
+                </div>
+                <div class="col-md-4">
+                    <p class="tool-page-line">Tool name: {{ b.tool_name }}</p>
+                    <p class="tool-page-line">Location: {{ b.location }}</p>
+                    <p class="tool-page-line">Condition: {{ b.condition }}</p>
+                    <p class="tool-page-line">Category: {{ b.category }}</p>
+
+                </div>
+                <div class="col-md-4">
+                    <p class="tool-page-line">Borrower's username: {{ r.borrower_id.username }}</p>
+                    <p class="tool-page-line">Borrower's email: {{ r.borrower_id.email }}</p>
+                    <p class="tool-page-line" style="color:steelblue">Expected date of return: {{ r.return_date }}</p>
+                    <p class="tool-page-line">{% ifequal b.location "Shed" %} Tool return is verified by Shed coordinator{% else %}{% if r.is_set_for_return %} <a href="{% url 'onApproveReturn' b.id %}" class="btn btn-info btn-block" > Approve Return </a>{% else%}No return request{% endif %}{% endifequal %}</p>
+                </div>
+            </div>
+            {% endfor %}
+        {% else %}
+             <p> Currently you have not lent any tools </p>
+            <a href="{%  url 'registerTool'  %}">Register now a tool and share it from your community so that other people can borrow it from you</a></h1>
+        {% endif %}
+        </section>
+    </div>
+</div>
+{% endblock %}
+            

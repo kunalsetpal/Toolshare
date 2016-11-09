@@ -1,0 +1,25 @@
+
+{% if user.is_authenticated %}
+<li><a href="{% url 'registerTool' %}">Register Tool</a></li>
+<li class="dropdown">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tools <b class="caret"></b></a>
+    <ul class="dropdown-menu">
+        <li><a href="{% url 'registeredTools' %}">Registered Tools</a></li>
+        <li><a href="{% url 'borrowedTools' %}">Borrowed Tools</a></li>
+        <li><a href="{% url 'borrowRequests' %}">Borrow Requests</a></li>
+        <li><a href="{% url 'lentTools' %}">Lent Tools</a></li>
+    </ul>
+</li>
+    {% if user_profile.is_coordinator == True %}
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Coordinator <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+            <li><a href="{% url 'displayShedTools' %}">Shed Tools</a></li>
+            <li><a href="{% url  'displayShedUsers'%}">Shed Users</a></li>
+            <li><a href="{% url 'displayShedStatistics'%}">Community Statistics</a></li>
+            </ul>
+        </li>
+    {% endif %}
+{% endif %}
+
+

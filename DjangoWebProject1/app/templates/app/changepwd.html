@@ -1,0 +1,38 @@
+{% extends "app/layout.html" %}
+{% block content %}
+
+    <h2>Update Password</h2>
+    <br />
+
+
+    <form action="" method="post" class="form-vertical"> {% csrf_token %}
+        <div class="form-group">
+            <label for="id_password" class="col-md-2 control-label">New Password</label>
+                <div class="col-md-10">
+                    {{ form.password_1 }}
+                    {{ form.password_1.errors }}
+                </div>
+        </div>
+        <div class="form-group">
+            <label for="id_password" class="col-md-2 control-label">Confirm Password</label>
+                <div class="col-md-10">
+                    {{ form.password_2 }}
+                    {{ form.password_2.errors }}
+                </div>
+        </div>
+        <div class="form-group">
+             <div class="col-md-offset-2 col-md-10">
+                 <br />
+                  <input type="submit" value="Update" class="btn btn-success" />
+             </div>
+        </div>
+        {% if form.errors %}
+                <p class="validation-summary-errors">Please fill correctly the necessary fields.</p>
+        {% endif %}
+        <!--{% if form.errors %}
+                <p class="validation-summary-errors">Passwords don't match</p>
+        {% endif %}-->
+    </form>
+
+{% endblock %}
+

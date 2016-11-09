@@ -1,0 +1,42 @@
+{% extends "app/layout.html" %}
+{% block content %}
+<div class="container"  id="registerdtools_form">
+    <div class="row" style="padding:10px">
+        <h2>{{ title }}</h2>
+        <section id="registeredToolForm">
+                <h2>Registered Tools</h2>
+                <br/>
+                {% if tools %}
+                            {% for b  in tools %}
+                                <div class="col-md-12 img-thumbnail" style="margin:5px 0;">
+                                 <div class="col-md-4 registered-tools">
+                                     {% if b.image %}<img src="{{ b.image.url }}" /> {% endif %}
+                                 </div>
+                                <div class="col-md-4">
+                                    <p class="registered-tool-page-line">Tool name: {{ b.tool_name }}</p>
+                                    <p class="registered-tool-page-line">Location: {{ b.location }}</p>
+                                    <p class="registered-tool-page-line">Condition: {{ b.condition }}</p>
+                                    <p class="registered-tool-page-line">Category: {{ b.category }}</p>
+                                </div>
+                                <div class="col-md-4">
+                                    <p class="registered-tool-page-line">Status: {{ b.status }}</p>
+                                    <p class="registered-tool-page-line">Instructions: {{ b.special_instruction }}</p>
+                                    <p> {% if not b.is_borrowed %}
+                                    {% url 'updateTool' b.id as to_url %}
+                                     <a href="{{to_url}}" class="btn btn-primary btn-sm btn-block"> Update tool</a>
+                                    {% else%}Tool Borrowed. Cannot update.{% endif %} </p>
+                                    <p class="registered-tool-page-line">
+                                    {% url 'displayToolHistory' b.id as to_url %}
+                                        <a href="{{to_url}}">View borrow history</a>
+                                </div>
+                                </div>
+                            {% endfor %}
+                {% else  %}
+                    <p> Currently you have no registered tools </p>
+                {% endif %}
+
+        </section>
+    </div>
+</div>
+{% endblock %}
+            

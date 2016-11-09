@@ -1,0 +1,89 @@
+
+{% extends "app/layout.html" %}
+
+{% block content %}
+
+<div class="row"  id="register_form">
+    <div class="col-md-8" >
+        <h2>{{ title }}</h2>
+        <section id="loginForm">
+            <form action="/registerUser/" method="post" class="form-horizontal">
+                {% csrf_token %}
+                <hr />
+                <div class="form-group">
+                    <label for="first_name" class="col-md-2 control-label">First name</label>
+                    <div class="col-xs-10">
+                        {{ form.first_name }}
+                        {{ form.first_name.errors }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="last_name" class="col-md-2 control-label">Last Name</label>
+                    <div class="col-md-10">
+                        {{ form.last_name }}
+                        {{ form.last_name.errors }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="gender" class="col-md-2 control-label">Gender</label>
+                    <div class="col-md-10 radio-button">
+                        {{ form.gender }}
+                        {{ form.gender.errors }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="address" class="col-md-2 control-label">Address</label>
+                    <div class="col-md-10">
+                        {{ form.address }}
+                        {{ form.address.errors }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="zipcode" class="col-md-2 control-label">Zip code</label>
+                    <div class="col-md-10">
+                        {{ form.zipcode }}
+                        {{ form.zipcode.errors }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="e_mail" class="col-md-2 control-label">E-mail</label>
+                    <div class="col-md-10">
+                        {{ form.e_mail }}
+                        {{ form.e_mail.errors }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="username" class="col-md-2 control-label">Username</label>
+                    <div class="col-md-10">
+                        {{ form.username }}
+                        {{ form.username.errors }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="password" class="col-md-2 control-label">Password</label>
+                    <div class="col-md-10">
+                        {{ form.password }}
+                        {{ form.password.errors }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="hidden" name="next" value="/" />
+                        <input type="submit" value="Register" class="btn btn-success" />
+                    </div>
+                </div>
+                {% if form.errors %}
+                <p class="validation-summary-errors">Please fill correctly the necessary fields.</p>
+                {% endif %}
+            </form>
+        </section>
+    </div>
+    <div class="col-md-4">
+        <section id="socialLoginForm"></section>
+    </div>
+
+</div>
+
+{% endblock %}
+
+
